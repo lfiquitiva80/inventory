@@ -1,0 +1,26 @@
+created:
+    - app/Http/Controllers/ReviewController.php
+    - database/factories/ReviewFactory.php
+    - database/migrations/2021_01_20_165350_create_reviews_table.php
+    - app/Models/Review.php
+    - database/seeders/ReviewSeeder.php
+    - tests/Feature/Http/Controllers/ReviewControllerTest.php
+    - app/Http/Requests/ReviewStoreRequest.php
+    - app/Http/Requests/ReviewUpdateRequest.php
+    - resources/views/review/index.blade.php
+    - resources/views/review/create.blade.php
+    - resources/views/review/show.blade.php
+    - resources/views/review/edit.blade.php
+updated:
+    - routes/web.php
+models:
+    Models\Disease: { enfermedad: string, observaciones: 'string:500' }
+    Models\Farm: { fincacodi: 'string:50', fincadesc: string }
+    Models\Lot: { fincacodi: string, lotecodcc: string, lotecodi: string, lotenomb: string }
+    Models\Statu: { estado: string, observaciones: 'string:500' }
+    Models\Type: { tipo: string, observaciones: 'string:500' }
+    Models\User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
+    Inventory: { farm_id: 'id foreign:farms.id', lot_id: 'id foreign:lots.id', columna: integer, fila: integer, statu_id: 'id foreign:status.id', user_id: 'id foreign' }
+    Official: { cedula: integer, nombrecompleto: string }
+    Eradication: { farm_id: 'id foreign:farms.id', lot_id: 'id foreign:lots.id', columna: integer, fila: integer, disease_id: 'id foreign:diseases.id', type_id: 'id foreign:types.id', official_id: 'id foreign:officials.id', fecha_erradicacion: dateTime, user_id: 'id foreign', observaciones: text, inventory_id: 'id foreign:inventaries.id' }
+    Review: { farm_id: 'id foreign:farms.id', lot_id: 'id foreign:lots.id', columna: integer, fila: integer, disease_id: 'id foreign:diseases.id', type_id: 'id foreign:types.id', official_id: 'id foreign:officials.id', fecha_erradicacion: dateTime, user_id: 'id foreign', observaciones: text, inventory_id: 'id foreign:inventaries.id' }
