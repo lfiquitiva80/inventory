@@ -25,8 +25,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::middleware(['auth'])->group(function () {
+    
 
 Route::resource('farm', App\Http\Controllers\FarmController::class);
 
@@ -61,6 +65,9 @@ Route::get('estado/export', [StatuController::class, 'export'])->name('estadoexp
 Route::get('estado/export', [StatuController::class, 'export'])->name('estadoexport');
 
 
+Route::get('inventoryall', [App\Http\Controllers\InventoryController::class, 'inventoryall'])->name('inventoryall');
+
+
 Route::get('official/export', [OfficialController::class, 'export'])->name('officialexport');
 
 
@@ -74,3 +81,6 @@ Route::resource('eradication', App\Http\Controllers\EradicationController::class
 
 
 Route::resource('review', App\Http\Controllers\ReviewController::class);
+
+});
+

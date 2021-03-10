@@ -9,8 +9,6 @@
     	<div class="panel-body">
 
 
-
-
           @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -37,6 +35,8 @@
 
 
 
+
+
   @include('eradication.create')
 
   @include('eradication.edit')
@@ -50,15 +50,14 @@
       <td>  id  </td>
       <td>  Finca </td>
       <td>  Lote</td>
-      <td>  Columna</td>
       <td>  Fila</td>
+      <td>  Columna</td>
       <td>  Enfermedad</td>
       <td>  Tipo Erradicación</td>
       <td>  Funcionarios</td>
       <td>  Fecha de Erradicación</td>
       <td>  Usuario</td>
       <td>  Observaciones</td>
-      <td>  Código Inventario</td>
       <td>  Fecha de creación</td>
       <td>  Fecha de actualización</td>
       <td colspan="2">  Acciones</td>
@@ -76,22 +75,21 @@
           <td>{{$row->id}}</td>
           <td>{{$row->farm->fincadesc}}</td>
           <td>{{$row->lot->LOTENOMB}}</td>
-          <td>{{$row->columna}}</td>
           <td>{{$row->fila}}</td>
+          <td>{{$row->columna}}</td>
           <td>{{$row->disease->enfermedad}}</td>
           <td>{{$row->type->tipo}}</td>
           <td>{{$row->official->nombrecompleto}}</td>
-          <td>{{$row->fecha_erradicacion}}</td>
+          <td>{{$row->fecha_erradicacion}}<br>
+              {{-- <code> {{\Carbon\Carbon::parse($row->fecha_erradicacion)->diffForHumans()}} </code> --}}
+          </td>
           <td>{{$row->user->name}}</td>
           <td>{{$row->observaciones}}</td>
-          <td>{{$row->inventory_id}}</td>
           <td>{{$row->created_at}}</td>
           <td>{{$row->updated_at}}</td>
 
 
-
           
-
 
 
           <td><a   data-toggle="modal" data-target="#editar_eradication" data-id="{{$row->id}}"
@@ -172,8 +170,79 @@ modal.find('.modal-body #user_id').val(user_id);
 modal.find('.modal-body #observaciones').val(observaciones);
 modal.find('.modal-body #inventory_id').val(inventory_id);
 
-})
+})   
 });
+
+      $(document).ready(function() {
+
+
+                $('.erradicacion').change(function(e) {
+                            e.preventDefault();
+                            var finca = $('#farm_id').val();
+                            var lote = $('#lot_id').val();
+                            var fila = $('#fila').val();
+                            var columna = $('#columna').val();
+                           
+
+                                   $.ajax({
+                                            url: '{!!URL::to('inventoryall')!!}',
+                                            type: 'GET',
+                                            dataType: 'json',
+                                            data: {finca: finca, lote: lote, fila: fila , columna : columna},
+
+                                            success:function(data){
+
+                                                if (data.length == 0 ) {
+
+                                                    $('#result').html('No se encuentra en Inventario, por el cual no se puede erradicar!!') ;
+                                                    $('#result').css("color","white");
+                                                    $('#guardar').attr('disabled', 'disabled');
+
+                                                } else {
+
+                                                     $('#result').html('Se encuentra en Inventario ,' + ' id de registro: ' + data[0].id);
+                                                     $('#result').css("color","yellow");
+                                                     $('#guardar').removeAttr('disabled', 'disabled');
+
+                                                    
+                                               
+                                                 }
+
+                                                 console.log(data); 
+                                                 
+                                                 
+                                                 
+
+                                             }
+
+                                               
+
+                                           
+                                        })
+
+
+                                        .done(function() {
+                                            console.log('correcto');
+                                        })
+                                        .fail(function() {
+                                            console.log("error");
+                                        })
+                                        .always(function() {
+                                        console.log("complete");
+                });
+                 
+
+                });
+
+            
+              
+
+
+
+                
+         
+
+            });
         
      
 
@@ -183,4 +252,7 @@ modal.find('.modal-body #inventory_id').val(inventory_id);
 
 
     @endsection
+
+
+  
 

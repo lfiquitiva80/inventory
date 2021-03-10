@@ -17,10 +17,12 @@
         <style>
             body {
                 font-family: 'Nunito';
+
             }
         </style>
     </head>
-    <body class="antialiased">
+    <body class="antialiased" background="{{asset('img/farm.svg')}}">
+
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -39,6 +41,7 @@
 
 
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                        <<img src="{{asset('img/farm.svg')}}" alt="">
                         <h1>SISTEMA DE ERRADICACIONES - PALMERAS DEL LLANO</h1>
 
                      
@@ -53,3 +56,5 @@
         </div>
     </body>
 </html>
+
+

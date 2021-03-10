@@ -50,8 +50,8 @@
       <td>  id  </td>
       <td>  Finca </td>
       <td>  Lote</td>
-      <td>  Columna</td>
       <td>  Fila</td>
+      <td>  Columna</td>      
       <td>  Estado</td>
       <td>  Usuario</td>
       <td>  Fecha_Creación</td>
@@ -71,8 +71,8 @@
           <td>{{$row->id}}</td>
           <td>{{$row->farm->fincadesc}}</td>
           <td>{{$row->lot->LOTENOMB}}</td>
-          <td>{{$row->columna}}</td>
           <td>{{$row->fila}}</td>
+          <td>{{$row->columna}}</td>
           <td>{{$row->statu->estado}}</td>
           <td>{{$row->user->name}}</td>
           <td>{{$row->created_at}}</td>
@@ -147,8 +147,7 @@ modal.find('.modal-body #user_id').val(user_id);
 })
 });
         
-     
-
+ 
     </script>
 @stop
 

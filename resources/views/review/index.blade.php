@@ -50,15 +50,14 @@
       <td>  id  </td>
       <td>  Finca </td>
       <td>  Lote</td>
-      <td>  Columna</td>
       <td>  Fila</td>
+      <td>  Columna</td>
       <td>  Enfermedad</td>
       <td>  Tipo Erradicación</td>
       <td>  Funcionarios</td>
       <td>  Fecha de Erradicación</td>
       <td>  Usuario</td>
       <td>  Observaciones</td>
-      <td>  Código Inventario</td>
       <td>  Fecha de creación</td>
       <td>  Fecha de actualización</td>
       <td colspan="2">  Acciones</td>
@@ -76,15 +75,14 @@
           <td>{{$row->id}}</td>
           <td>{{$row->farm->fincadesc}}</td>
           <td>{{$row->lot->LOTENOMB}}</td>
-          <td>{{$row->columna}}</td>
           <td>{{$row->fila}}</td>
+          <td>{{$row->columna}}</td>
           <td>{{$row->disease->enfermedad}}</td>
           <td>{{$row->type->tipo}}</td>
           <td>{{$row->official->nombrecompleto}}</td>
           <td>{{$row->fecha_erradicacion}}</td>
           <td>{{$row->user->name}}</td>
           <td>{{$row->observaciones}}</td>
-          <td>{{$row->inventory_id}}</td>
           <td>{{$row->created_at}}</td>
           <td>{{$row->updated_at}}</td>
 

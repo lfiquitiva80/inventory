@@ -16,6 +16,7 @@ use App\Models\Disease;
 use App\Models\Type;
 use App\Models\Official;
 use App\Models\Review;
+use DB;
 
 
 class EradicationController extends Controller
@@ -31,7 +32,7 @@ class EradicationController extends Controller
         $farm = Farm::pluck('fincadesc','id');
         $lote = Lot::pluck('LOTENOMB','id');
         $statu = Statu::pluck('estado','id');
-        $disease = Disease::pluck('enfermedad','id');
+        $disease = Disease::Orderby('enfermedad','ASC')->pluck('enfermedad','id');
         $type = Type::pluck('tipo','id');
         $official = Official::pluck('nombrecompleto','id');
         $inventory = Inventory::pluck('id','id');
@@ -57,14 +58,31 @@ class EradicationController extends Controller
     public function store(EradicationStoreRequest $request)
     {
         
-        //dd($request->all());
-        $query = Inventory::where([['farm_id',$request->input('farm_id')],['lot_id',$request->input('lot_id')],['columna',$request->input('columna')],['fila',$request->input('fila')]])->get();
+        
+        $query = Inventory::where([['farm_id',$request->input('farm_id')],['lot_id',$request->input('lot_id')],['columna',$request->input('columna')],['fila',$request->input('fila')]])->first();
 
-        if ($query->isEmpty()) {
-            $result = Eradication::create($request->validated());
-        } else {
+     
+      
+        if ($query->statu_id == 2) {
             $result = Review::create($request->validated());
+        } else {
+
+            $affected = DB::table('inventories')
+              ->where('id', $query->id)
+              ->update(['statu_id' => 2]);
+
+             $result = Eradication::create($request->validated());
+
+
         }
+
+
+
+        
+        
+
+
+      
                 
 
         $request->session()->flash('eradication.id', $result->id);

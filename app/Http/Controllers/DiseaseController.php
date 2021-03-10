@@ -72,6 +72,7 @@ class DiseaseController extends Controller
     public function update(DiseaseUpdateRequest $request, $id)
     {
         
+        
         $disease = Disease::findOrFail($request->id);
 
         $disease->update($request->validated());

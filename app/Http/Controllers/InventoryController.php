@@ -22,7 +22,7 @@ class InventoryController extends Controller
     public function index(Request $request)
     {
       
-        $inventories = Inventory::Search($request->nombre)->orderBy('id', 'DESC')->paginate(10);
+        $inventories = Inventory::Search($request->nombre)->orderBy('id', 'DESC')->paginate(20);
         $farm = Farm::pluck('fincadesc','id');
         $lote = Lot::pluck('LOTENOMB','id');
         $statu = Statu::pluck('estado','id');
@@ -99,5 +99,15 @@ class InventoryController extends Controller
         $inventory->delete();
 
         return redirect()->route('inventory.index');
+    }
+
+
+    public function inventoryall(Request $request, Inventory $inventory)
+    {
+        
+        //dd($request->all());
+       return Inventory::where([['farm_id',$request->input('finca')],['lot_id',$request->input('lote')],['columna',$request->input('columna')],['fila',$request->input('fila')]
+       ])->get();
+
     }
 }

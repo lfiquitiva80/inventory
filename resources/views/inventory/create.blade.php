@@ -20,17 +20,19 @@
 <div class="form-group" >
         <label for="id">Lote</label>
         	{!! Form::select('lot_id',$lote, null, ['class' => 'form-control','name'=>'lot_id']) !!}
-         </div>    
+         </div>
+
+<div class="form-group" >
+        <label for="id">Fila </label>
+        {!! Form::number('fila', null,['class' => 'form-control', 'placeholder' => 'Digite la Fila','name'=>'fila']) !!}
+</div>                 
 
 <div class="form-group" >
         <label for="id">Columna </label>
         {!! Form::number('columna', null,['class' => 'form-control', 'placeholder' => 'Digite la columna','name'=>'columna']) !!}
  </div> 
 
-<div class="form-group" >
-        <label for="id">Fila </label>
-        {!! Form::number('fila', null,['class' => 'form-control', 'placeholder' => 'Digite la Fila','name'=>'fila']) !!}
-</div>    
+
 
 <div class="form-group" >
         <label for="id">Estado </label>
@@ -41,7 +43,7 @@
 
 <div class="form-group" >
         <label for="id">Usuario Logueado </label>
-    	{!! Form::select('user_id',$user, Auth::id(), ['class' => 'form-control','name'=>'statu_id']) !!}
+    	{!! Form::select('user_id',$user, Auth::id(), ['class' => 'form-control','name'=>'user_id']) !!}
 </div>            
  
 

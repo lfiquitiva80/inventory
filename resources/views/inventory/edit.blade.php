@@ -28,17 +28,19 @@
 <div class="form-group" >
         <label for="id">Lote</label>
             {!! Form::select('lot_id',$lote, null, ['class' => 'form-control','name'=>'lot_id','id'=>'lot_id']) !!}
-         </div>    
+         </div> 
+
+<div class="form-group" >
+        <label for="id">Fila </label>
+        {!! Form::number('fila', null,['class' => 'form-control', 'placeholder' => 'Digite la Fila','name'=>'fila','id'=>'fila']) !!}
+</div>    
+            
 
 <div class="form-group" >
         <label for="id">Columna </label>
         {!! Form::number('columna', null,['class' => 'form-control', 'placeholder' => 'Digite la columna','name'=>'columna','id'=>'columna']) !!}
  </div> 
 
-<div class="form-group" >
-        <label for="id">Fila </label>
-        {!! Form::number('fila', null,['class' => 'form-control', 'placeholder' => 'Digite la Fila','name'=>'fila','id'=>'fila']) !!}
-</div>    
 
 <div class="form-group" >
         <label for="id">Estado </label>

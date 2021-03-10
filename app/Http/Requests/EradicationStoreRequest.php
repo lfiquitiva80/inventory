@@ -34,7 +34,7 @@ class EradicationStoreRequest extends FormRequest
             'fecha_erradicacion' => ['required'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
             'observaciones' => ['required', 'string'],
-            'inventory_id' => ['required', 'integer', 'exists:inventories,id'],
+            //'inventory_id' => ['required', 'integer', 'exists:inventories,id'],
         ];
     }
 }

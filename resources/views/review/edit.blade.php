@@ -90,10 +90,6 @@
 
     <div class="col-md-6">    
 
-<div class="form-group" >
-        <label for="id">Código Inventario </label>
-        {!! Form::select('inventory_id',$inventory, null, ['class' => 'form-control','name'=>'inventory_id','id'=>'inventory_id','placeholder'=>'Seleccione...']) !!}
-</div>
 
 </div>
 

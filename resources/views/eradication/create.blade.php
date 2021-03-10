@@ -14,30 +14,32 @@
 	<div class="col-md-3">
 <div class="form-group" >
         <label for="id">Finca</label>
-        {!! Form::select('farm_id',$farm, null, ['class' => 'form-control','name'=>'farm_id' ,'placeholder'=>'Seleccione...']) !!}
+        {!! Form::select('farm_id',$farm, null, ['class' => 'form-control erradicacion','name'=>'farm_id','id'=>'farm_id' ,'placeholder'=>'Seleccione...']) !!}
     </div>
 
 </div>
 <div class="col-md-3">
 <div class="form-group" >
         <label for="id">Lote</label>
-        	{!! Form::select('lot_id',$lote, null, ['class' => 'form-control','name'=>'lot_id','placeholder'=>'Seleccione...']) !!}
+        	{!! Form::select('lot_id',$lote, null, ['class' => 'form-control erradicacion','name'=>'lot_id','id'=>'lot_id','placeholder'=>'Seleccione...']) !!}
          </div>    
+</div>
+
+<div class="col-md-3">
+<div class="form-group" >
+        <label for="id">Fila </label>
+        {!! Form::number('fila', null,['class' => 'form-control erradicacion', 'placeholder' => 'Digite la Fila','name'=>'fila','id'=>'fila']) !!}
+</div>
 </div>
 
 
 <div class="col-md-3">
 <div class="form-group" >
         <label for="id">Columna </label>
-        {!! Form::number('columna', null,['class' => 'form-control', 'placeholder' => 'Digite la columna','name'=>'columna']) !!}
+        {!! Form::number('columna', null,['class' => 'form-control erradicacion', 'placeholder' => 'Digite la columna','name'=>'columna','id'=>'columna']) !!}
  </div> 
 </div>
-<div class="col-md-3">
-<div class="form-group" >
-        <label for="id">Fila </label>
-        {!! Form::number('fila', null,['class' => 'form-control', 'placeholder' => 'Digite la Fila','name'=>'fila']) !!}
-</div>
-</div>
+
 </div>
 
 <div class="row">
@@ -80,11 +82,12 @@
 <div class="row">
 
 	<div class="col-md-6">    
-
-<div class="form-group" >
-        <label for="id">Código Inventario </label>
-    	{!! Form::select('inventory_id',$inventory, null, ['class' => 'form-control','name'=>'inventory_id','placeholder'=>'Seleccione...']) !!}
-</div>
+		
+			<div class="alert alert-info" role="alert">
+				<p id='result' style="color:red"></p>
+			  </div>
+		
+		
 
 </div>
 
@@ -111,11 +114,15 @@
 
 </div>
 
-			<div class="modal-footer">
-				<center><button type="submit" class="btn btn-primary" >Guardar</button>
+			<div class="modal-footer"  >
+				<center><button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
     <button type="reset" class="btn btn-danger">Borrar</button></center><p>
 			</div>
 	{!! Form::close() !!}		
 		</div>
 	</div>
 </div>
+
+
+
+    
