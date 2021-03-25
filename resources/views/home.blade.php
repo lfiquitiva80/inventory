@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Palmeras del llano</div>
+                <div class="card-header"><h1>Aplicación control de activos Biológicos-Palmeras del llano</h1></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,13 @@
                     @endif
 
                     <div class="row">
-                    	
+
+                      {{-- @foreach ($query as $item)
+
+                      {{$item->fincadesc}}
+                      {{$item->estado}}
+                          
+                      @endforeach                    	 --}}
 
                     	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                     		 <div class="card" style="width: 18rem;">

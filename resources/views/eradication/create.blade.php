@@ -46,7 +46,8 @@
 	<div class="col-md-3">
 <div class="form-group" >
         <label for="id">Enfermedad </label>
-    	{!! Form::select('disease_id',$disease, null, ['class' => 'form-control','name'=>'disease_id','placeholder'=>'Seleccione...']) !!}
+    	{!! Form::select('disease_id',$disease, null, ['class' => 'form-control','name'=>'disease_id','placeholder'=>'Seleccione...','title' =>'Cuando se utilice el concepto debera tener la observación del motivo de la erradicación']) !!}
+    	
 </div>
 
 </div>
@@ -106,10 +107,6 @@
    {!! Form::textarea('observaciones', null, ['class' => 'form-control', 'placeholder' => 'Digite una Observación','name'=>'observaciones']) !!}
 </div>     
      
-
-           
- 
-
 
 
 </div>

@@ -46,7 +46,7 @@
 <div class="table table-sm table-responsive">
 <table class="table table-hover" >
   <thead>
-    <tr>
+    <tr style="background-color: #D1D5DB;">
       <td>  id  </td>
       <td>  Finca </td>
       <td>  Lote</td>

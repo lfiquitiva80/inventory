@@ -21,8 +21,11 @@ class InventoryController extends Controller
      */
     public function index(Request $request)
     {
-      
-        $inventories = Inventory::Search($request->nombre)->orderBy('id', 'DESC')->paginate(20);
+            
+        $inventories = Inventory::where([['farm_id','LIKE' , '%'.$request->input('farm_id').'%'], ['lot_id','LIKE' ,  '%'.$request->input('lot_id').'%'], ['fila','LIKE' , $request->input('fila').'%'], ['columna','LIKE' ,  $request->input('columna').'%']])->orderBy('id', 'DESC')->paginate(20);
+        
+
+
         $farm = Farm::pluck('fincadesc','id');
         $lote = Lot::pluck('LOTENOMB','id');
         $statu = Statu::pluck('estado','id');

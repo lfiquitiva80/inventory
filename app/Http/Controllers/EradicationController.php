@@ -77,14 +77,6 @@ class EradicationController extends Controller
         }
 
 
-
-        
-        
-
-
-      
-                
-
         $request->session()->flash('eradication.id', $result->id);
 
         return redirect()->route('eradication.index');

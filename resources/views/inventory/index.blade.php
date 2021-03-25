@@ -20,13 +20,8 @@
         </ul>
     </div>
 @endif
-{!! Form::open(['route' => 'inventory.index', 'method'=>'GET', 'Class'=>'navbar-form navbar-right']) !!}
-<!--<form class="navbar-form navbar-right" role="search">-->
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search" name="nombre" id="nombre">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-{!! Form::close() !!}
+@include('inventory.search')
+
 <div class="panel panel-default">
 
 <h4><b><center>REGISTROS DE INVENTARIOS</h4></b></center>
@@ -46,7 +41,7 @@
 <div class="table table-sm table-responsive">
 <table class="table table-hover" >
   <thead>
-    <tr>
+    <tr style="background-color: #D1D5DB;">
       <td>  id  </td>
       <td>  Finca </td>
       <td>  Lote</td>
@@ -65,7 +60,7 @@
   </thead>
   <tbody>
 
-  @foreach($inventories as $row)
+  @forelse($inventories as $row)
     <tr>
 
           <td>{{$row->id}}</td>
@@ -73,7 +68,7 @@
           <td>{{$row->lot->LOTENOMB}}</td>
           <td>{{$row->fila}}</td>
           <td>{{$row->columna}}</td>
-          <td>{{$row->statu->estado}}</td>
+          <td>{!!$row->statu->estado == "Muerta" ? '<span class="badge badge-danger">'.$row->statu->estado.'</span>' :  '<span class="badge badge-success">'.$row->statu->estado. '</span>'!!} </td>
           <td>{{$row->user->name}}</td>
           <td>{{$row->created_at}}</td>
           <td>{{$row->updated_at}}</td>
@@ -104,13 +99,15 @@
     </tr>
   </tbody>
 
-  @endforeach
+  @empty
+    <code>No se encuentran registros en su búsqueda</code>
+  @endforelse
 
 
 </table>
 </div>
 
-<center>{{ $inventories->links() }}</center>
+<center>{{ $inventories->appends(request()->input())->links() }}</center>
 
 </div>
 
