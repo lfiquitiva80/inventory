@@ -15,6 +15,7 @@ use App\Models\Lot;
 use App\Models\Disease;
 use App\Models\Type;
 use App\Models\Official;
+use DB;
 
 class ReviewController extends Controller
 {
@@ -29,7 +30,7 @@ class ReviewController extends Controller
 
 
         $farm = Farm::pluck('fincadesc','id');
-        $lote = Lot::pluck('LOTENOMB','id');
+        $lote = Lot::select(DB::raw("CONCAT(LOTECODI,' ',LOTENOMB) AS name"),'id')->pluck('name','id');
         $statu = Statu::pluck('estado','id');
         $disease = Disease::pluck('enfermedad','id');
         $type = Type::pluck('tipo','id');

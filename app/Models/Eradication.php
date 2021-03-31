@@ -83,5 +83,7 @@ class Eradication extends Model
     public function scopeSearch($query, $nombre)
     {
         return $query ->where('farm_id','LIKE' ,  "%$nombre%");
-    }    
+    }
+
+   
 }

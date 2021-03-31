@@ -27,12 +27,25 @@ class HomeController extends Controller
     {
         $inventory =  Inventory::all()->take(10);
 
-        $query = DB::select('SELECT F.fincadesc,S.estado, COUNT(I.statu_id) AS plantas FROM inventories I
-        INNER JOIN farms F ON F.id= I.farm_id
-        INNER JOIN status S ON S.id = I.statu_id
-        GROUP BY farm_id, statu_id');
+        $query = DB::select("SELECT F.fincadesc,
+                sum(case when INV.statu_id = '1' then INV.statu_id else 0 end)/ 1 as Viva,
+                sum(case when INV.statu_id = '2' then INV.statu_id else 0 end) / 2 as Muerta
+        FROM inventories INV 
+        INNER JOIN farms F ON F.id= INV.farm_id
+        INNER JOIN status S ON S.id = INV.statu_id
+        group by F.fincadesc
+        
+        UNION ALL
 
-        //dump($query);
+        SELECT 'TOTAL',
+        sum(case when INV.statu_id = '1' then INV.statu_id else 0 end)/ 1 as Viva,
+        sum(case when INV.statu_id = '2' then INV.statu_id else 0 end) / 2 as Muerta
+        FROM inventories INV 
+        INNER JOIN farms F ON F.id= INV.farm_id
+        INNER JOIN status S ON S.id = INV.statu_id
+        ");
+
+    
        
         return view('home', compact('inventory','query'));
     }

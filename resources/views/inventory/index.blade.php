@@ -45,8 +45,8 @@
       <td>  id  </td>
       <td>  Finca </td>
       <td>  Lote</td>
-      <td>  Fila</td>
-      <td>  Columna</td>      
+      <td>  Linea</td>
+      <td>  Palma</td>      
       <td>  Estado</td>
       <td>  Usuario</td>
       <td>  Fecha_Creación</td>
@@ -65,7 +65,7 @@
 
           <td>{{$row->id}}</td>
           <td>{{$row->farm->fincadesc}}</td>
-          <td>{{$row->lot->LOTENOMB}}</td>
+          <td>{{$row->lot->FullName}}</td>
           <td>{{$row->fila}}</td>
           <td>{{$row->columna}}</td>
           <td>{!!$row->statu->estado == "Muerta" ? '<span class="badge badge-danger">'.$row->statu->estado.'</span>' :  '<span class="badge badge-success">'.$row->statu->estado. '</span>'!!} </td>
@@ -142,6 +142,10 @@ modal.find('.modal-body #fila').val(fila);
 modal.find('.modal-body #statu_id').val(statu_id);
 modal.find('.modal-body #user_id').val(user_id);
 })
+
+
+
+
 });
         
  

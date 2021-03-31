@@ -10,6 +10,7 @@ use App\Models\Farm;
 use App\Models\Statu;
 use App\Models\User;
 use App\Models\Lot;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class InventoryController extends Controller
 
 
         $farm = Farm::pluck('fincadesc','id');
-        $lote = Lot::pluck('LOTENOMB','id');
+        $lote = Lot::select(DB::raw("CONCAT(LOTECODI,' ',LOTENOMB) AS name"),'id')->pluck('name','id');
         $statu = Statu::pluck('estado','id');
         $user= User::where('id',Auth::id())->pluck('name','id');
 
@@ -108,7 +109,7 @@ class InventoryController extends Controller
     public function inventoryall(Request $request, Inventory $inventory)
     {
         
-        //dd($request->all());
+        //dd(Inventory::first());
        return Inventory::where([['farm_id',$request->input('finca')],['lot_id',$request->input('lote')],['columna',$request->input('columna')],['fila',$request->input('fila')]
        ])->get();
 

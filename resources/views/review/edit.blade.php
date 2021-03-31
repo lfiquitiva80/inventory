@@ -33,20 +33,20 @@
             {!! Form::select('lot_id',$lote, null, ['class' => 'form-control','name'=>'lot_id','id'=>'lot_id','placeholder'=>'Seleccione...']) !!}
          </div>    
 </div>
-
-
 <div class="col-md-3">
 <div class="form-group" >
-        <label for="id">Columna </label>
-        {!! Form::number('columna', null,['class' => 'form-control', 'placeholder' => 'Digite la columna','name'=>'columna','id'=>'columna']) !!}
- </div> 
-</div>
-<div class="col-md-3">
-<div class="form-group" >
-        <label for="id">Fila </label>
+        <label for="id">Linea </label>
         {!! Form::number('fila', null,['class' => 'form-control', 'placeholder' => 'Digite la Fila','name'=>'fila','id'=>'fila']) !!}
 </div>
 </div>
+
+<div class="col-md-3">
+<div class="form-group" >
+        <label for="id">Palma </label>
+        {!! Form::number('columna', null,['class' => 'form-control', 'placeholder' => 'Digite la columna','name'=>'columna','id'=>'columna']) !!}
+ </div> 
+</div>
+
 </div>
 
 <div class="row">

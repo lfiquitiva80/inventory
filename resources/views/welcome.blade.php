@@ -42,7 +42,7 @@
 
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         <<img src="{{asset('img/farm.svg')}}" alt="">
-                        <h1>SISTEMA DE ERRADICACIONES - PALMERAS DEL LLANO</h1>
+                        <h1>Aplicación control de activos Biológicos- PALMERAS DEL LLANO</h1>
 
                      
 

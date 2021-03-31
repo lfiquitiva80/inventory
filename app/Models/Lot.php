@@ -36,5 +36,10 @@ class Lot extends Model
   return $query ->where('LOTENOMB','LIKE' ,  "%$nombre%");
   }
 
+      public function getFullNameAttribute()
+{
+    return "{$this->LOTECODI} {$this->LOTENOMB}";
+}
+
 
 }

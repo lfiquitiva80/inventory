@@ -61,4 +61,6 @@ class Inventory extends Model
     {
         return $query ->where('farm_id','LIKE' ,  "%$nombre%");
     }
+
+
 }

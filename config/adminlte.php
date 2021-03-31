@@ -235,12 +235,20 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text'        => 'Home',
+            'url'         => 'home',
+            'icon'        => 'fas fa-home',
+            //'label'       => 4,
+            'label_color' => 'success',
+        ],          
+        [
             'text'        => 'Erradicaciones',
             'url'         => 'eradication',
             'icon'        => 'fab fa-pagelines',
             //'label'       => 4,
             'label_color' => 'success',
         ],
+      
         [
             'text'        => 'Erradicaciones_revisar',
             'url'         => 'review',

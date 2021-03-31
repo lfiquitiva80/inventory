@@ -20,7 +20,7 @@
 
      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
             <div class="form-group" >
-        <label for="id">Fila </label>
+        <label for="id">Linea </label>
         {!! Form::number('fila', old('fila'),['class' => 'form-control', 'placeholder' => 'Digite la Fila','name'=>'fila']) !!}
         </div>   
 
@@ -29,7 +29,7 @@
      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
 
         <div class="form-group" >
-        <label for="id">Columna </label>
+        <label for="id">Palma </label>
         {!! Form::number('columna', old('columna'),['class' => 'form-control', 'placeholder' => 'Digite la columna','name'=>'columna']) !!}
     </div>
 

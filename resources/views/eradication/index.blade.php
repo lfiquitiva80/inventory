@@ -50,8 +50,8 @@
       <td>  id  </td>
       <td>  Finca </td>
       <td>  Lote</td>
-      <td>  Fila</td>
-      <td>  Columna</td>
+      <td>  Linea</td>
+      <td>  Palma</td>
       <td>  Enfermedad</td>
       <td>  Tipo Erradicación</td>
       <td>  Funcionarios</td>
@@ -74,7 +74,7 @@
 
           <td>{{$row->id}}</td>
           <td>{{$row->farm->fincadesc}}</td>
-          <td>{{$row->lot->LOTENOMB}}</td>
+          <td>{{$row->lot->FullName}}</td>
           <td>{{$row->fila}}</td>
           <td>{{$row->columna}}</td>
           <td>{{$row->disease->enfermedad}}</td>

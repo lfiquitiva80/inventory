@@ -27,16 +27,16 @@
 
 <div class="col-md-3">
 <div class="form-group" >
-        <label for="id">Fila </label>
-        {!! Form::number('fila', null,['class' => 'form-control erradicacion', 'placeholder' => 'Digite la Fila','name'=>'fila','id'=>'fila']) !!}
+        <label for="id">Linea </label>
+        {!! Form::number('fila', null,['class' => 'form-control erradicacion', 'placeholder' => 'Digite la Linea','name'=>'fila','id'=>'fila']) !!}
 </div>
 </div>
 
 
 <div class="col-md-3">
 <div class="form-group" >
-        <label for="id">Columna </label>
-        {!! Form::number('columna', null,['class' => 'form-control erradicacion', 'placeholder' => 'Digite la columna','name'=>'columna','id'=>'columna']) !!}
+        <label for="id">Palma </label>
+        {!! Form::number('columna', null,['class' => 'form-control erradicacion', 'placeholder' => 'Digite la Palma','name'=>'columna','id'=>'columna']) !!}
  </div> 
 </div>
 

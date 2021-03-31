@@ -30,7 +30,7 @@ class EradicationController extends Controller
        
         $eradications = Eradication::Search($request->nombre)->orderBy('id', 'DESC')->paginate(10);
         $farm = Farm::pluck('fincadesc','id');
-        $lote = Lot::pluck('LOTENOMB','id');
+        $lote = Lot::select(DB::raw("CONCAT(LOTECODI,' ',LOTENOMB) AS name"),'id')->pluck('name','id');
         $statu = Statu::pluck('estado','id');
         $disease = Disease::Orderby('enfermedad','ASC')->pluck('enfermedad','id');
         $type = Type::pluck('tipo','id');

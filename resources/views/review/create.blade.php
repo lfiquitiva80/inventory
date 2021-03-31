@@ -25,19 +25,19 @@
          </div>    
 </div>
 
-
 <div class="col-md-3">
 <div class="form-group" >
-        <label for="id">Columna </label>
-        {!! Form::number('columna', null,['class' => 'form-control', 'placeholder' => 'Digite la columna','name'=>'columna']) !!}
+        <label for="id">Linea </label>
+        {!! Form::number('fila', null,['class' => 'form-control', 'placeholder' => 'Digite la Linea','name'=>'fila']) !!}
+</div>
+</div>
+<div class="col-md-3">
+<div class="form-group" >
+        <label for="id">Palma </label>
+        {!! Form::number('columna', null,['class' => 'form-control', 'placeholder' => 'Digite la Palma','name'=>'columna']) !!}
  </div> 
 </div>
-<div class="col-md-3">
-<div class="form-group" >
-        <label for="id">Fila </label>
-        {!! Form::number('fila', null,['class' => 'form-control', 'placeholder' => 'Digite la Fila','name'=>'fila']) !!}
-</div>
-</div>
+
 </div>
 
 <div class="row">
