@@ -9,7 +9,7 @@
     	<div class="panel-body">
 
 
-
+       @include('flash-message')
 
           @if ($errors->any())
     <div class="alert alert-danger">
@@ -20,21 +20,47 @@
         </ul>
     </div>
 @endif
-{!! Form::open(['route' => 'review.index', 'method'=>'GET', 'Class'=>'navbar-form navbar-right']) !!}
+
+  <a class="btn btn-outline-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <i class="fas fa-file-excel"></i> Download Excel
+  </a>
+ 
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+
+            
+            {!! Form::open(['route' => 'reviewexport', 'method'=>'GET', 'Class'=>'form-inline']) !!}
+            <label>&nbsp; Fecha Inicial: </label>
+            {!! Form::date('fecha', \Illuminate\Support\Carbon::now(), ['class' => 'form-control','name'=>'fecha','required']) !!}
+            <label>&nbsp;  Fecha Final: </label>
+            {!! Form::date('fechafinal', \Illuminate\Support\Carbon::now(), ['class' => 'form-control','name'=>'fechafinal','required']) !!}&nbsp; 
+        <button type="submit" class="btn btn-success"><i class="fas fa-file-excel"></i> Descargar</button>
+          {!! Form::close() !!}
+        
+    
+  </div>
+</div>
+
+<hr>
+
+
+{!! Form::open(['route' => 'review.index', 'method'=>'GET', 'Class'=>'navbar-form navbar-right form-inline']) !!}
 <!--<form class="navbar-form navbar-right" role="search">-->
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search" name="nombre" id="nombre">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+    <label for="id">Estado:&nbsp;</label>
+        {!! Form::select('nombre',$solution, null , ['class' => 'form-control','name'=>'nombre','placeholder' => 'Seleccione el Estado']) !!}
+  </div>&nbsp;
+  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i> Buscar</button>
 {!! Form::close() !!}
 <div class="panel panel-default">
 
 <h4><b><center>REGISTROS DE ERRADICACIONES A REVISAR</h4></b></center>
 
 
-<a class="btn btn-info" data-toggle="modal" href='#review'><i class="fas fa-plus-circle"></i> Crear Erradación</a>
-<a href="#" class="btn btn-success"><i class="fas fa-file-excel"></i> Download Excel</a>
-
+<a class="btn btn-outline-dark" data-toggle="modal" href='#review'><i class="fas fa-plus-circle"></i> Crear Erradicación</a>
+<!-- <a href="#" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Download Excel</a>
+ -->
 
 
   @include('review.create')
@@ -56,6 +82,7 @@
       <td>  Tipo Erradicación</td>
       <td>  Funcionarios</td>
       <td>  Fecha de Erradicación</td>
+      <td>  Estado  </td>
       <td>  Usuario</td>
       <td>  Observaciones</td>
       <td>  Fecha de creación</td>
@@ -73,6 +100,7 @@
     <tr>
 
           <td>{{$row->id}}</td>
+         
           <td>{{$row->farm->fincadesc}}</td>
           <td>{{$row->lot->FullName}}</td>
           <td>{{$row->fila}}</td>
@@ -81,6 +109,7 @@
           <td>{{$row->type->tipo}}</td>
           <td>{{$row->official->nombrecompleto}}</td>
           <td>{{$row->fecha_erradicacion}}</td>
+           <td>{!!$row->solution->title == "Pendiente" ? '<span class="badge badge-danger">'.$row->solution->title.'</span>' :  '<span class="badge badge-success">'.$row->solution->title. '</span>'!!} </td>
           <td>{{$row->user->name}}</td>
           <td>{{$row->observaciones}}</td>
           <td>{{$row->created_at}}</td>
@@ -104,6 +133,7 @@
               data-user_id="{{$row->user_id}}"
               data-observaciones="{{$row->observaciones}}"
               data-inventory_id="{{$row->inventory_id}}"
+              data-solution_id="{{$row->solution_id}}"
 
 
            ><i class="fas fa-eye" aria-hidden="true"></i></a></td>
@@ -151,6 +181,7 @@ $('#editar_review').on('show.bs.modal', function (event) {
   var user_id= button.data('user_id')
   var observaciones= button.data('observaciones')
   var inventory_id= button.data('inventory_id')
+  var solution_id= button.data('solution_id')
 
 
 // Extract info from data-* attributes
@@ -169,6 +200,7 @@ modal.find('.modal-body #fecha_erradicacion').val(fecha_erradicacion);
 modal.find('.modal-body #user_id').val(user_id);
 modal.find('.modal-body #observaciones').val(observaciones);
 modal.find('.modal-body #inventory_id').val(inventory_id);
+modal.find('.modal-body #solution_id').val(solution_id);
 
 })
 });

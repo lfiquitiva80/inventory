@@ -1,19 +1,9 @@
 models:
-  Review:
-    farm_id: id foreign:farms.id
-    lot_id: id foreign:lots.id
-    columna: integer
-    fila: integer
-    disease_id: id foreign:diseases.id
-    type_id: id foreign:types.id
-    official_id: id foreign:officials.id
-    fecha_erradicacion: dateTime
-    user_id: id foreign
-    observaciones: text
-    inventory_id: id foreign:inventaries.id
+  Weighing:
+    title: string:400
+    
 
 controllers:
-  Review:
+  Weighing:
     resource
 
-seeders: Review

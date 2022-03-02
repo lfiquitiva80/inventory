@@ -26,6 +26,7 @@ class Review extends Model
         'user_id',
         'observaciones',
         'inventory_id',
+        'solution_id',
     ];
 
     /**
@@ -43,6 +44,7 @@ class Review extends Model
         'fecha_erradicacion' => 'datetime',
         'user_id' => 'integer',
         'inventory_id' => 'integer',
+        'solution_id' => 'integer',
     ];
 
 
@@ -81,8 +83,14 @@ class Review extends Model
         return $this->belongsTo(\App\Models\Inventary::class);
     }
 
+        public function solution()
+    {
+        return $this->belongsTo(\App\Models\Solution::class);
+    }
+
+
     public function scopeSearch($query, $nombre)
     {
-        return $query ->where('farm_id','LIKE' ,  "%$nombre%");
+        return $query ->where('solution_id','LIKE' ,  "%$nombre%");
     }        
 }

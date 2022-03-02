@@ -33,6 +33,7 @@ class ReviewStoreRequest extends FormRequest
             'official_id' => ['required', 'integer', 'exists:officials,id'],
             'fecha_erradicacion' => ['required'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
+            'solution_id' => ['required', 'integer', 'exists:solutions,id'],
             'observaciones' => ['required', 'string'],
             //'inventory_id' => ['required', 'integer', 'exists:inventories,id'],
         ];

@@ -7,7 +7,7 @@
 
         
     	<div class="panel-body">
-
+        @include('flash-message')
 
           @if ($errors->any())
     <div class="alert alert-danger">
@@ -18,6 +18,31 @@
         </ul>
     </div>
 @endif
+
+ <p>
+  <a class="btn btn-outline-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <i class="fas fa-file-excel"></i> Download Excel
+  </a>
+ 
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+
+            
+            {!! Form::open(['route' => 'erradicacionesexport', 'method'=>'GET', 'Class'=>'form-inline']) !!}
+            <label>&nbsp; Fecha Inicial: </label>
+            {!! Form::date('fecha', \Illuminate\Support\Carbon::now(), ['class' => 'form-control','name'=>'fecha','required']) !!}
+            <label>&nbsp;  Fecha Final: </label>
+            {!! Form::date('fechafinal', \Illuminate\Support\Carbon::now(), ['class' => 'form-control','name'=>'fechafinal','required']) !!}&nbsp; 
+        <button type="submit" class="btn btn-success"><i class="fas fa-file-excel"></i> Descargar</button>
+          {!! Form::close() !!}
+        
+    
+  </div>
+</div>
+
+<hr>
+
 {!! Form::open(['route' => 'eradication.index', 'method'=>'GET', 'Class'=>'navbar-form navbar-right']) !!}
 <!--<form class="navbar-form navbar-right" role="search">-->
   <div class="form-group">
@@ -30,8 +55,8 @@
 <h4><b><center>REGISTROS DE ERRADICACIONES</h4></b></center>
 
 
-<a class="btn btn-info" data-toggle="modal" href='#eradication'><i class="fas fa-plus-circle"></i> Crear Erradación</a>
-<a href="#" class="btn btn-success"><i class="fas fa-file-excel"></i> Download Excel</a>
+<a class="btn btn-outline-dark" data-toggle="modal" href='#eradication'><i class="fas fa-plus-circle"></i> Crear Erradicación</a>
+<!-- <a href="#" class="btn btn-outline-info"><i class="fas fa-file-excel"></i> Download Excel</a> -->
 
 
 
@@ -65,7 +90,7 @@
       
 
 
-    </tr>
+    </tr> 
   </thead>
   <tbody>
 
@@ -200,7 +225,7 @@ modal.find('.modal-body #inventory_id').val(inventory_id);
 
                                                 } else {
 
-                                                     $('#result').html('Se encuentra en Inventario ,' + ' id de registro: ' + data[0].id);
+                                                     $('#result').html('Se encuentra en Inventario y lo puede registrar con el ' + ' id de registro: ' + data[0].id);
                                                      $('#result').css("color","yellow");
                                                      $('#guardar').removeAttr('disabled', 'disabled');
 

@@ -89,6 +89,10 @@
 <div class="row">
 
     <div class="col-md-6">    
+        <div class="form-group" >
+        <label for="id">Estado:</label>
+        {!! Form::select('solution_id',$solution, null , ['class' => 'form-control','name'=>'solution_id','id'=>'solution_id']) !!}
+</div>
 
 
 </div>

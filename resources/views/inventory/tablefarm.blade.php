@@ -14,6 +14,7 @@
                             <thead>
                               <tr>
                                 <th>Finca</th>
+                                <th>Lote</th>
                                 <th>Vivas</th>
                                 <th>Muertas</th>
                                 <th>Plantas Iniciales</th>
@@ -25,6 +26,7 @@
                             <tbody>
                               <tr>
                                 <td>{{$item->fincadesc}}</td>
+                                <td>({{$item->LOTECODI}}) - {{$item->LOTENOMB}}</td>
                                 <td>{{$item->Viva}}</td>
                                 <td>{{$item->Muerta}}</td>
                                 <td>0</td>

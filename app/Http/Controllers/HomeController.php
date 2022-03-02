@@ -27,17 +27,18 @@ class HomeController extends Controller
     {
         $inventory =  Inventory::all()->take(10);
 
-        $query = DB::select("SELECT F.fincadesc,
+        $query = DB::select("SELECT F.fincadesc,L.LOTENOMB, L.LOTECODI,
                 sum(case when INV.statu_id = '1' then INV.statu_id else 0 end)/ 1 as Viva,
                 sum(case when INV.statu_id = '2' then INV.statu_id else 0 end) / 2 as Muerta
         FROM inventories INV 
         INNER JOIN farms F ON F.id= INV.farm_id
+        INNER JOIN lots L ON L.id = INV.lot_id
         INNER JOIN status S ON S.id = INV.statu_id
-        group by F.fincadesc
+        group by F.fincadesc,L.LOTENOMB,L.LOTECODI
         
         UNION ALL
 
-        SELECT 'TOTAL',
+        SELECT 'TOTAL', '========','========>',
         sum(case when INV.statu_id = '1' then INV.statu_id else 0 end)/ 1 as Viva,
         sum(case when INV.statu_id = '2' then INV.statu_id else 0 end) / 2 as Muerta
         FROM inventories INV 

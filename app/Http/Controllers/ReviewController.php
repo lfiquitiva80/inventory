@@ -15,6 +15,8 @@ use App\Models\Lot;
 use App\Models\Disease;
 use App\Models\Type;
 use App\Models\Official;
+use App\Models\Solution;
+use App\Exports\reviewerradicacionesExport;
 use DB;
 
 class ReviewController extends Controller
@@ -33,12 +35,13 @@ class ReviewController extends Controller
         $lote = Lot::select(DB::raw("CONCAT(LOTECODI,' ',LOTENOMB) AS name"),'id')->pluck('name','id');
         $statu = Statu::pluck('estado','id');
         $disease = Disease::pluck('enfermedad','id');
+        $solution = Solution::pluck('title','id');
         $type = Type::pluck('tipo','id');
         $official = Official::pluck('nombrecompleto','id');
         $inventory = Inventory::pluck('id','id');
         $user= User::where('id',Auth::id())->pluck('name','id');
 
-        return view('review.index', compact('reviews','farm','lote','statu','user','disease','type','official','inventory'));
+        return view('review.index', compact('reviews','farm','lote','statu','user','disease','type','official','inventory','solution'));
     }
 
     /**
@@ -60,7 +63,7 @@ class ReviewController extends Controller
 
         $request->session()->flash('review.id', $review->id);
 
-        return redirect()->route('review.index');
+        return redirect()->route('review.index')->with('info','Se creo correctamente!');;
     }
 
     /**
@@ -97,7 +100,7 @@ class ReviewController extends Controller
 
         $request->session()->flash('review.id', $review->id);
 
-        return redirect()->route('review.index');
+        return redirect()->route('review.index')->with('success','Se actualizó correctamente!');;
     }
 
     /**
@@ -109,6 +112,15 @@ class ReviewController extends Controller
     {
         $review->delete();
 
-        return redirect()->route('review.index');
+        return redirect()->route('review.index')->with('error','Se elimino correctamente!');;
+    }
+
+
+        public function export(Request $request) 
+    {
+        
+
+        return new reviewerradicacionesExport($request->fecha, $request->fechafinal);
+        // Excel::download(new OfficialExport, 'Funcioanrios.xlsx');
     }
 }

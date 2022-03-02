@@ -16,6 +16,7 @@ use App\Models\Disease;
 use App\Models\Type;
 use App\Models\Official;
 use App\Models\Review;
+use App\Exports\consultaerradicacionesExport;
 use DB;
 
 
@@ -65,6 +66,8 @@ class EradicationController extends Controller
       
         if ($query->statu_id == 2) {
             $result = Review::create($request->validated());
+            
+
         } else {
 
             $affected = DB::table('inventories')
@@ -79,7 +82,7 @@ class EradicationController extends Controller
 
         $request->session()->flash('eradication.id', $result->id);
 
-        return redirect()->route('eradication.index');
+        return redirect()->route('eradication.index')->with('info','Se creo correctamente, verificar si el registro quedo en erradicaciones a revisar!');;
     }
 
     /**
@@ -115,7 +118,7 @@ class EradicationController extends Controller
 
         $request->session()->flash('eradication.id', $eradication->id);
 
-        return redirect()->route('eradication.index');
+        return redirect()->route('eradication.index')->with('success','You added new items, follow next step!');
     }
 
     /**
@@ -127,6 +130,16 @@ class EradicationController extends Controller
     {
         $eradication->delete();
 
-        return redirect()->route('eradication.index');
+        return redirect()->route('eradication.index')->with('error','Se elimino correctamente!');
     }
+
+
+        public function export(Request $request) 
+    {
+        
+
+        return new consultaerradicacionesExport($request->fecha, $request->fechafinal);
+        // Excel::download(new OfficialExport, 'Funcioanrios.xlsx');
+    }
+
 }

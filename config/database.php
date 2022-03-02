@@ -91,6 +91,44 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'duquesa' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DQB_HOST', 'localhost'),
+            'port' => env('DQB_PORT', '1433'),
+            'database' => env('DQB_DATABASE', 'forge'),
+            'username' => env('DQB_USERNAME', 'forge'),
+            'password' => env('DQB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+         'palmeras' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL'),
+            'host' => env('PDB_HOST', 'localhost'),
+            'port' => env('PDB_PORT', '1433'),
+            'database' => env('PDB_DATABASE', 'forge'),
+            'username' => env('PDB_USERNAME', 'forge'),
+            'password' => env('PDB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+        'improagro' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL'),
+            'host' => env('IMPRODB_HOST', 'localhost'),
+            'port' => env('IMPRODB_PORT', '1433'),
+            'database' => env('IMPRODB_DATABASE', 'forge'),
+            'username' => env('IMPRODB_USERNAME', 'forge'),
+            'password' => env('IMPRODB_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],        
+
+
     ],
 
     /*
