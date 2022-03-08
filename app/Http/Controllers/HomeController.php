@@ -46,7 +46,7 @@ class HomeController extends Controller
         INNER JOIN status S ON S.id = INV.statu_id
         ");
 
-    
+emotify('success', 'You are awesome, your data was successfully created');
        
         return view('home', compact('inventory','query'));
     }

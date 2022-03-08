@@ -1,15 +1,9 @@
 created:
-    - app/Http/Controllers/WeighingController.php
-    - database/factories/WeighingFactory.php
-    - database/migrations/2022_03_02_113747_create_weighings_table.php
-    - app/Models/Weighing.php
-    - tests/Feature/Http/Controllers/WeighingControllerTest.php
-    - app/Http/Requests/WeighingStoreRequest.php
-    - app/Http/Requests/WeighingUpdateRequest.php
-    - resources/views/weighing/index.blade.php
-    - resources/views/weighing/create.blade.php
-    - resources/views/weighing/show.blade.php
-    - resources/views/weighing/edit.blade.php
+    - app/Http/Controllers/RefinedController.php
+    - database/factories/RefinedFactory.php
+    - database/migrations/2022_03_03_152436_create_refineds_table.php
+    - app/Models/Refined.php
+    - tests/Feature/Http/Controllers/RefinedControllerTest.php
 updated:
     - routes/web.php
 models:
@@ -25,3 +19,4 @@ models:
     Review: { farm_id: 'id foreign:farms.id', lot_id: 'id foreign:lots.id', columna: integer, fila: integer, disease_id: 'id foreign:diseases.id', type_id: 'id foreign:types.id', official_id: 'id foreign:officials.id', fecha_erradicacion: dateTime, user_id: 'id foreign', observaciones: text, inventory_id: 'id foreign:inventaries.id' }
     Solution: { title: 'string:400' }
     Weighing: { title: 'string:400' }
+    Refined: { title: 'string:400' }

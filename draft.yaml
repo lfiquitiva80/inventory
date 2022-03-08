@@ -1,9 +1,9 @@
 models:
-  Weighing:
+  Refined:
     title: string:400
     
 
 controllers:
-  Weighing:
+  Refined:
     resource
 

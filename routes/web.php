@@ -7,6 +7,7 @@ use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\StatuController;
 use App\Http\Controllers\OfficialController;
+use App\Http\Controllers\WeighingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,9 +93,17 @@ Route::resource('solution', App\Http\Controllers\SolutionController::class);
 
 
 Route::resource('weighing', App\Http\Controllers\WeighingController::class);
+Route::resource('refined', App\Http\Controllers\RefinedController::class);
 
+Route::get('bascula', [App\Http\Controllers\WeighingController::class, 'basculaall'])->name('basculaall');
 
 });
+
+
+
+
+
+
 
 
 

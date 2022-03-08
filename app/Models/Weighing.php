@@ -16,6 +16,9 @@ class Weighing extends Model
 
     protected $table = 'bRegistroBascula';
 
-
+    public function scopeSearch($query, $nombre)
+    {
+        return $query ->where('numero','LIKE' ,  "%$nombre%");
+    }
 
 }

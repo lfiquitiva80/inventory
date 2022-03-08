@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\WeighingStoreRequest;
 use App\Http\Requests\WeighingUpdateRequest;
 use App\Models\Weighing;
+use App\Models\Balance;
 use Illuminate\Http\Request;
 
 class WeighingController extends Controller
@@ -15,10 +16,9 @@ class WeighingController extends Controller
      */
     public function index(Request $request)
     {   
-        $weighings = Weighing::first();
-        //dd($weighings->first());
-
-        return  $weighings; // view('weighing.index', compact('weighings'));
+        $weighings = Balance::paginate();
+        
+        return  view('weighing.index', compact('weighings'));
     }
 
     /**
@@ -27,7 +27,8 @@ class WeighingController extends Controller
      */
     public function create(Request $request)
     {
-        return view('weighing.create');
+        $codigo = Weighing::where('numero','LIKE',"EMP%")->OrderBy('fecha', 'DESC')->pluck('numero','numero');    
+        return view('weighing.create',compact('codigo'));
     }
 
     /**
@@ -36,7 +37,7 @@ class WeighingController extends Controller
      */
     public function store(WeighingStoreRequest $request)
     {
-        $weighing = Weighing::create($request->validated());
+        $weighing = Balance::create($request->all());
 
         $request->session()->flash('weighing.id', $weighing->id);
 
@@ -88,4 +89,18 @@ class WeighingController extends Controller
 
         return redirect()->route('weighing.index');
     }
+
+
+        public function basculaall(Request $request, Weighing $weighing)
+    {
+        
+
+        
+       return Weighing::where('numero',$request->input('numero'))->get();
+
+    }
+
+
+
+
 }

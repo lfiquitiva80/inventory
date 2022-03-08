@@ -241,21 +241,21 @@ return [
             //'label'       => 4,
             'label_color' => 'success',
         ],              
-        // [
-        //     'text'        => 'Erradicaciones',
-        //     'url'         => 'eradication',
-        //     'icon'        => 'fab fa-pagelines',
-        //     //'label'       => 4,
-        //     'label_color' => 'success',
-        // ],
+        [
+            'text'        => 'Balance Máquila',
+            'url'         => 'weighing',
+            'icon'        => 'fab fa-pagelines',
+            //'label'       => 4,
+            'label_color' => 'success',
+        ],
       
-        // [
-        //     'text'        => 'Erradicaciones_revisar',
-        //     'url'         => 'review',
-        //     'icon'        => 'fas fa-fan',
-        //     //'label'       => 4,
-        //     'label_color' => 'success',
-        // ],
+        [
+            'text'        => 'Refinado Entregado',
+            'url'         => 'refined',
+            'icon'        => 'fas fa-fan',
+            //'label'       => 4,
+            'label_color' => 'success',
+        ],
         // [
         //     'text'        => 'Inventarios',
         //     'url'         => 'inventory',
