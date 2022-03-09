@@ -3,15 +3,43 @@
 
 @section('content')
 
+        @include('flash-message')
+
+          @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<div class="row">
+	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+		{!! Form::open(['route' => 'weighing.index', 'method'=>'GET', 'Class'=>'navbar-form navbar-right']) !!}
+<!--<form class="navbar-form navbar-right" role="search">-->
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Consultar Número de Tiquete" name="nombre" id="nombre">
+  </div>
+  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i> Consultar</button>
+{!! Form::close() !!}
+	</div>
+	<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+		
+	</div>
+</div>
 
 
 
 <table cellspacing="0" style="border-collapse:collapse; width:1833px">
 	<tbody>
 		<tr>
-			<td style="border-bottom:none; border-left:none; border-right:none; border-top:1px solid black; height:93px; text-align:center; vertical-align:bottom; white-space:nowrap; width:62px"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></span></td>
-			<td colspan="20" style="border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:1693px"><span style="font-size:27px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">BALANCE MAQUILA DE REFINACION BIO D</span></span></strong></span>
-				<br><a href="{{ route('weighing.create') }}" class="btn btn-primary ">Crear Registro</a>
+
+			<td style="border-bottom:none; border-left:none; border-right:none; border-top:none; solid black; height:93px; text-align:center; vertical-align:bottom; white-space:nowrap; width:62px"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></span></td>
+			<td colspan="20" style="border-bottom:none; solid black; border-left:none solid black; border-right:none solid black; border-top:none solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:1693px"><span style="font-size:27px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">BALANCE MAQUILA DE REFINACION BIO D</span></span></strong></span>
+				<br><a href="{{ route('weighing.create') }}" class="btn btn-outline-dark"><i class="fas fa-plus-circle"></i> Crear Registro</a>
+
 			</td>
 			<td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap; width:71px">&nbsp;
 
@@ -43,62 +71,397 @@
 			<td style="background-color:#d9d9d9; border-bottom:none; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:normal; width:70px"><span style="font-size:13px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;Neto agl a entregar Biod&nbsp;</span></span></strong></span></td>
 			<td style="background-color:#d9d9d9; border-bottom:none; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:normal; width:94px"><span style="font-size:13px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;Neto merma&nbsp;</span></span></strong></span></td>
 			<td style="background-color:#d9d9d9; border-bottom:none; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:normal; width:86px"><span style="font-size:13px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;RBD a entregar KG&nbsp;</span></span></strong></span></td>
-<!-- 			<td style="background-color:#d9d9d9; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:normal; width:82px"><span style="font-size:13px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Fecha&nbsp;</span></span></strong></span></td>
-			<td style="background-color:#d9d9d9; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:normal; width:108px"><span style="font-size:13px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Remision</span></span></strong></span></td>
-			<td style="background-color:#d9d9d9; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:normal; width:70px"><span style="font-size:13px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Acidez oleica entregada&nbsp;</span></span></strong></span></td>
-			<td style="background-color:#d9d9d9; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:normal; width:90px"><span style="font-size:13px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;Cantidad Kg&nbsp;</span></span></strong></span></td> -->
+
 			<td style="background-color:#d9d9d9; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:middle; white-space:normal; width:71px"><span style="font-size:13px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Diferencias origen</span></span></strong></span></td>
+			<td style="background-color:#d9d9d9; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:middle; white-space:normal; width:71px"><span style="font-size:13px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Acción</span></span></strong></span></td>
+
 		</tr>
+
+		@foreach($weighings as $row)
 		<tr>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:17px; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">3511</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp; 31.350</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">Alianza Oriental SA</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">XIC607</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">3,69</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">0,18</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">14-ene</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">EMP0000000613</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.300</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">4,14</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">0,13</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">4,968</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.555</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 777</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 777</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 313</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 29.432</span></span></strong></span></td>
-<!-- 			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">18/01/2022</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">RP-0000009796</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">0,068</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 34.630</span></span></span></td> -->
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">-50</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:17px; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">
+				<a href="{{ route('weighing.edit',$row->id)}}">
+				{{$row->NUMREMISION}}
+				</a>
+			</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp; {{$row->NETO}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->proc->Tercero}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->PLACA}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->ACIDEZREMITIDA}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->HUM_IMP_REMITIDO}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->FEC_RECEPCION}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->NUMTIQUETE}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$row->NETO_REC_KILOS}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->ACIDEZ_RECIBIDA}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->HUM_IMP_RECIBIDA}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->MERMA}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$row->NETO_AGL_APROD_KG}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$row->NETO_AGL_ACES_KG}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$row->NETO_AGL_ENT_BIOD_KG}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$row->NETO_MERMA}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$row->RDB}}</span></span></strong></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->DIFERENCIAS_ORIGEN}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">@include('weighing.destroy')</span></span></span></td>
 		</tr>
-		<tr>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:1px solid black; border-right:1px solid black; border-top:none; height:17px; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">3513</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp; 31.480</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">Alianza Oriental SA</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">XIC607</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">3,79</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">0,13</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">18-ene</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">EMP0000000614</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.470</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">4,2</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">0,15</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">5,040</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.586</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 793</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 793</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 315</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 29.569</span></span></strong></span></td>
-<!-- 			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">18/01/2022</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:left; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">RP-0000009797</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">0,061</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32.950</span></span></span></td> -->
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">-10</span></span></span></td>
-		</tr>
-	</tbody>
+
+		@endforeach
+
+
+		
 </table>
+
+
+
+<hr>
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+               <div class="card-body">
+                   <div class="row">
+
+<hr>
+
+<table cellspacing="0" style="border-collapse:collapse; width:1911px">
+    <tbody>
+        <tr>
+            <td colspan="6" rowspan="2" style="border-bottom:2px solid black; border-left:2px solid black; border-right:2px solid black; border-top:2px solid black; height:36px; text-align:center; vertical-align:bottom; white-space:nowrap; width:487px"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></span></td>
+            <td colspan="2" rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:2px solid black; border-right:1px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:207px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Total acp recibido&nbsp;</span></span></strong></span></td>
+            <td rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:1px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:112px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($totalacp,0,',','.')}}</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:2px solid black; vertical-align:bottom; white-space:nowrap; width:58px">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:2px solid black; border-top:2px solid black; vertical-align:bottom; white-space:nowrap; width:87px"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></span></td>
+            <td rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:2px solid black; border-right:1px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:normal; width:105px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Total AGL a generar</span></span></strong></span></td>
+            <td rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:1px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:76px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($totalagl,0,',','.')}}</span></span></strong></span></td>
+            <td rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:1px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:89px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($totalaglaces,0,',','.')}}</span></span></strong></span></td>
+            <td rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:1px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:72px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($totalaglent,0,',','.')}}</span></span></strong></span></td>
+            <td rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:1px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:normal; width:97px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;RBD a entregar&nbsp;&nbsp;</span></span></strong></span></td>
+            <td rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:2px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:89px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp; {{number_format($rdb,0,',','.')}}</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap; width:84px"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></span></td>
+            <td colspan="2" rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:.7px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:183px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">RBD entregado&nbsp;</span></span></strong></span></td>
+            <td rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:2px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:93px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($totalrdbentregado,0,',','.')}}</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap; width:73px">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:2px solid black; border-left:none; border-right:none; border-top:none; height:18px; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></span></td>
+            <td style="border-bottom:2px solid black; border-left:none; border-right:2px solid black; border-top:none; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></span></td>
+            <td style="border-bottom:2px solid black; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:17px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:17px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="6" style="border-bottom:1px solid black; border-left:2px solid black; border-right:2px solid black; border-top:2px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Eficiencias&nbsp;</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:2px solid black; border-right:.7px solid black; border-top:2px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Saldo RBD</span></span></strong></span></td>
+            <td style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:none; border-right:2px solid black; border-top:2px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($saldordb,0,',','.')}}</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:17px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="background-color:#a6a6a6; border-bottom:2px solid black; border-left:2px solid black; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Porcentaje AGL</span></span></strong></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:2px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($porcentajeagl,2,',','.')}}</span></span></strong></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:2px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></strong></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:2px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></strong></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:2px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;Porcentaje RBD&nbsp;&nbsp;</span></span></strong></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:2px solid black; border-left:none; border-right:2px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($porcentajerdb,2,',','.')}}</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="3" style="border-bottom:none; border-left:2px solid black; border-right:2px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Entregas&nbsp;</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:17px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="2" style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:2px solid black; border-right:.7px solid black; border-top:2px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Convertido a CPO</span></span></strong></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:none; border-right:2px solid black; border-top:2px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($conv_acp,0,',','.')}}</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:17px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="2" style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:2px solid black; border-right:.7px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Merma 1%</span></span></strong></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:none; border-right:2px solid black; border-top:none; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{number_format($merma,0,',','.')}}</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:17px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="2" style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:2px solid black; border-right:.7px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Produccion AGL</span></span></strong></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:none; border-left:none; border-right:2px solid black; border-top:none; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{number_format($produccion_agl,0,',','.')}}</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:14px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:white"><span style="font-family:Calibri,sans-serif">-13.722.050,22</span></span></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="2" style="background-color:#a6a6a6; border-bottom:2px solid black; border-left:2px solid black; border-right:.7px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Convertido a desgomado</span></span></strong></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:2px solid black; border-left:none; border-right:2px solid black; border-top:1px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($conv_desg,0,',','.')}}</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:14px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="3" style="border-bottom:none; border-left:2px solid black; border-right:2px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">Saldos</span></span></strong></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:14px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="2" style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:2px solid black; border-right:.7px solid black; border-top:2px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">Saldo CPO</span></strong></span></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:none; border-right:2px solid black; border-top:2px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($saldo_cpo,0,',','.')}}</span></strong></span></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:14px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="2" style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:2px solid black; border-right:.7px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">AGL a entregar&nbsp;</span></strong></span></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:none; border-right:2px solid black; border-top:none; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($agl_entregar,0,',','.')}}</span></strong></span></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:14px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="2" style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:2px solid black; border-right:.7px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">Despacho AGL</span></strong></span></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:none; border-right:2px solid black; border-top:none; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($desp_agl,0,',','.')}}</span></strong></span></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:14px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="2" style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:2px solid black; border-right:.7px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">Saldo AGL anterior 2020</span></strong></span></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:none; border-right:2px solid black; border-top:none; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($saldo_agl_ant_2020,0,',','.')}}</span></strong></span></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:14px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+            <td colspan="2" style="background-color:#a6a6a6; border-bottom:2px solid black; border-left:2px solid black; border-right:.7px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">Saldo AGL</span></strong></span></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:2px solid black; border-left:none; border-right:2px solid black; border-top:none; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{number_format($saldo_agl,0,',','.')}}</span></span></span></td>
+            <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+        </tr>
+    </tbody>
+</table>
+
+
+</div>
+
+
+<!--inicio de tabla-->
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--Fin row -->
+
 
 
 

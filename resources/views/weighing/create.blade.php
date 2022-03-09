@@ -12,14 +12,13 @@
         
        <center><h1>FORMULARIO DE REGISTRO</h1></center>
        <hr>
-        <div class="alert alert-danger" id="alertahide">
+        <div class="alert alert-info" id="alertahide">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <strong ><p id="result"></p>  </strong>
     </div>
     </div> 
 
     
-
 </div>
 
   {!! Form::open(['route' => 'weighing.store', 'method'=>'POST','id'=>'FormCreateeradications']) !!}
@@ -42,7 +41,8 @@
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <div class="form-group">    
         <span class="label">Procedencia</span>
-        <input type="text" name="PROCEDENCIA" id="PROCEDENCIA" class="form-control" value="" required="required"  title="">
+      
+        {!! Form::select('PROCEDENCIA',$procedencia, null, ['class' => 'form-control ','name'=>'PROCEDENCIA','id'=>'PROCEDENCIA' ,'placeholder'=>'Seleccione...', 'required']) !!}
     </div>
     </div>
 </div>

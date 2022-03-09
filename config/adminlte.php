@@ -235,9 +235,9 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Home',
+            'text'        => 'Dashboard',
             'url'         => 'home',
-            'icon'        => 'fas fa-home',
+            'icon'        => 'fas fa-tachometer-alt',
             //'label'       => 4,
             'label_color' => 'success',
         ],              

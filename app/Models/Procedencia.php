@@ -5,16 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Balance extends Model
+class Procedencia extends Model
 {
     use HasFactory;
+
+
 
 
     protected $connection = 'palmeras';
     
     protected $guarded = [];
 
-    protected $table = 'BALANCE_MAQUILA_REFINACION';
+    protected $table = 'PROCEDENCIA';
   
 
     /**
@@ -40,12 +42,6 @@ class Balance extends Model
 
       public function scopeSearch($query, $nombre)
     {
-        return $query ->where('NUMTIQUETE','LIKE' ,  "%$nombre%");
-    }
-
-
-      public function proc()
-    {
-        return $this->belongsTo(\App\Models\Procedencia::class,'PROCEDENCIA');
+        return $query ->where('remision','LIKE' ,  "%$nombre%");
     }
 }

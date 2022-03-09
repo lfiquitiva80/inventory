@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Inventory;
 use DB;
+use App\Models\Weighing;
+use App\Models\Balance;
+use App\Models\Refined;
+use App\Models\Procedencia;
 
 class HomeController extends Controller
 {
@@ -25,29 +29,28 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $inventory =  Inventory::all()->take(10);
 
-        $query = DB::select("SELECT F.fincadesc,L.LOTENOMB, L.LOTECODI,
-                sum(case when INV.statu_id = '1' then INV.statu_id else 0 end)/ 1 as Viva,
-                sum(case when INV.statu_id = '2' then INV.statu_id else 0 end) / 2 as Muerta
-        FROM inventories INV 
-        INNER JOIN farms F ON F.id= INV.farm_id
-        INNER JOIN lots L ON L.id = INV.lot_id
-        INNER JOIN status S ON S.id = INV.statu_id
-        group by F.fincadesc,L.LOTENOMB,L.LOTECODI
-        
-        UNION ALL
 
-        SELECT 'TOTAL', '========','========>',
-        sum(case when INV.statu_id = '1' then INV.statu_id else 0 end)/ 1 as Viva,
-        sum(case when INV.statu_id = '2' then INV.statu_id else 0 end) / 2 as Muerta
-        FROM inventories INV 
-        INNER JOIN farms F ON F.id= INV.farm_id
-        INNER JOIN status S ON S.id = INV.statu_id
-        ");
+        $totalacp =  Balance::sum('NETO_REC_KILOS');
+        $totalagl =  Balance::sum('NETO_AGL_APROD_KG');
+        $totalaglaces =  Balance::sum('NETO_AGL_ACES_KG');
+        $totalaglent =  Balance::sum('NETO_AGL_ENT_BIOD_KG');
+        $totalrdbentregado =  Refined::sum('Cantidad_Kg');
+        $rdb =  Balance::sum('RDB');
+        $porcentajeagl= ($totalagl/$totalacp)*100;
+        $porcentajerdb= ($rdb/$totalacp);
+        $saldordb = $rdb - $totalrdbentregado;
+        $conv_acp= ($totalrdbentregado/$porcentajerdb)*100;
+        $merma = $conv_acp * 0.01;
+        $produccion_agl= $conv_acp-$totalrdbentregado-$merma;
+        $conv_desg = $conv_acp-$merma;
 
-emotify('success', 'You are awesome, your data was successfully created');
+        $saldo_cpo=  $totalacp-$conv_desg-$merma;
+        $agl_entregar = $produccion_agl*0.5;
+        $desp_agl = 32170+31920+30020+29780+30900+30720+30480;
+        $saldo_agl_ant_2020=-1906;
+        $saldo_agl= $agl_entregar-$desp_agl+$saldo_agl_ant_2020;
        
-        return view('home', compact('inventory','query'));
+        return view('home', compact('totalacp','totalagl','totalaglaces','totalaglent','rdb','porcentajeagl','porcentajerdb','totalrdbentregado','saldordb','conv_acp','merma','produccion_agl','conv_desg','saldo_cpo','agl_entregar','desp_agl','saldo_agl_ant_2020','saldo_agl'));
     }
 }

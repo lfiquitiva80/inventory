@@ -21,4 +21,6 @@ class Weighing extends Model
         return $query ->where('numero','LIKE' ,  "%$nombre%");
     }
 
+   
+
 }
