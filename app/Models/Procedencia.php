@@ -37,11 +37,11 @@ class Procedencia extends Model
         'id' => 'integer',
     ];
 
-    public $timestamps = true;
+    public $timestamps = false;
 
 
       public function scopeSearch($query, $nombre)
     {
-        return $query ->where('remision','LIKE' ,  "%$nombre%");
+        return $query ->where('Tercero','LIKE' ,  "%$nombre%");
     }
 }

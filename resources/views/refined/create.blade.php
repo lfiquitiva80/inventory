@@ -14,21 +14,21 @@
     <div class="col-md-3">
 <div class="form-group" >
         <label for="id">Remisión</label>
-        {!! Form::select('remision',$codigo, null, ['class' => 'form-control ','name'=>'remision','id'=>'remision' ,'placeholder'=>'Seleccione...', 'required']) !!}
+        {!! Form::select('remision',$codigo, old('remision') , ['class' => 'form-control refined','name'=>'remision','id'=>'remision' ,'placeholder'=>'Seleccione...', 'required']) !!}
     </div>
 
 </div>
 <div class="col-md-3">
 <div class="form-group" >
         <label for="id">Acidez Oleica Entregada</label>
-         {!! Form::number('Acidez_oleica_entregada', null,['class' => 'form-control ', 'placeholder' => 'Acidez Oleica Entregada','name'=>'Acidez_oleica_entregada','id'=>'Acidez_oleica_entregada', 'step' => '0.01', 'required']) !!}
+         {!! Form::number('Acidez_oleica_entregada', old('Acidez_oleica_entregada'),['class' => 'form-control ', 'placeholder' => 'Acidez Oleica Entregada','name'=>'Acidez_oleica_entregada','id'=>'Acidez_oleica_entregada', 'step' => '0.01', 'required']) !!}
          </div>    
 </div>
 
 <div class="col-md-3">
 <div class="form-group" >
         <label for="id">Cantidad en Kilogramos </label>
-            {!! Form::number('Cantidad_Kg', null,['class' => 'form-control ', 'placeholder' => 'Cantidad_Kg ','name'=>'Cantidad_Kg','id'=>'Cantidad_Kg','required']) !!}
+            {!! Form::number('Cantidad_Kg', old('Cantidad_Kg'),['class' => 'form-control ', 'placeholder' => 'Cantidad_Kg ','name'=>'Cantidad_Kg','id'=>'Cantidad_Kg','required', 'readonly']) !!}
   
 </div>
 </div>

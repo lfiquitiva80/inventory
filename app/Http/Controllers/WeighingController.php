@@ -9,6 +9,8 @@ use App\Models\Balance;
 use App\Models\Refined;
 use App\Models\Procedencia;
 use Illuminate\Http\Request;
+use App\Exports\BalanceExport;
+use DB;
 
 class WeighingController extends Controller
 {
@@ -18,26 +20,29 @@ class WeighingController extends Controller
      */
     public function index(Request $request)
     {   
-        $weighings = Balance::Search($request->nombre)->paginate(3);
+        $weighings = Balance::Search($request->nombre)->OrderBy('id','DESC')->paginate(15);
         $totalacp =  Balance::sum('NETO_REC_KILOS');
         $totalagl =  Balance::sum('NETO_AGL_APROD_KG');
         $totalaglaces =  Balance::sum('NETO_AGL_ACES_KG');
         $totalaglent =  Balance::sum('NETO_AGL_ENT_BIOD_KG');
-        $totalrdbentregado =  Refined::sum('Cantidad_Kg');
+        $totalrdbentregado =  collect(DB::connection('palmeras')->select(DB::raw("SELECT SUM(Kilos_Despacho) AS KD FROM DESPACHOPTMAQUILA()")))->first();
         $rdb =  Balance::sum('RDB');
         $porcentajeagl= ($totalagl/$totalacp)*100;
-        $porcentajerdb= ($rdb/$totalacp);
-        $saldordb = $rdb - $totalrdbentregado;
-        $conv_acp= ($totalrdbentregado/$porcentajerdb)*100;
+        $porcentajerdb= ($rdb/$totalacp)*100;
+        $saldordb = $rdb - $totalrdbentregado->KD;
+        $conv_acp= ($totalrdbentregado->KD/$porcentajerdb)*100;
         $merma = $conv_acp * 0.01;
-        $produccion_agl= $conv_acp-$totalrdbentregado-$merma;
+        $produccion_agl= $conv_acp-$totalrdbentregado->KD-$merma;
         $conv_desg = $conv_acp-$merma;
 
         $saldo_cpo=  $totalacp-$conv_desg-$merma;
         $agl_entregar = $produccion_agl*0.5;
-        $desp_agl = 32170+31920+30020+29780+30900+30720+30480;
+        $desp_agl = DB::connection('improagro')->select(DB::raw("SELECT sum(pesoNeto) as PesoNeto
+        FROM [IMPROAGRO].[dbo].[bRegistroBascula] where tercero='900104517-8' and producto='1004' and year(fechaNeto) > '2020'"));
+        
         $saldo_agl_ant_2020=-1906;
-        $saldo_agl= $agl_entregar-$desp_agl+$saldo_agl_ant_2020;
+        $saldo_agl= $agl_entregar-$desp_agl[0]->PesoNeto+$saldo_agl_ant_2020;
+
 
 
 
@@ -50,8 +55,17 @@ class WeighingController extends Controller
      */
     public function create(Request $request)
     {
-        $codigo = Weighing::where('numero','LIKE',"EMP%")->OrderBy('fecha', 'DESC')->pluck('numero','numero');
-        $procedencia = Procedencia::pluck('Tercero','id');
+
+       $tiquete = Balance::pluck('NUMTIQUETE')->toArray();
+       //dd($tiquete);
+
+    
+       $codigo = Weighing::where('numero','LIKE',"EMP%")
+                            //->whereNotIn('numero',$tiquete)
+                            ->whereYear('fecha','>=','2022')  
+                            ->OrderBy('fecha', 'DESC')->pluck('numero','numero');
+      
+       $procedencia = Procedencia::pluck('Tercero','id');
 
 
         return view('weighing.create',compact('codigo','procedencia'));
@@ -63,6 +77,8 @@ class WeighingController extends Controller
      */
     public function store(WeighingStoreRequest $request)
     {
+        
+        //dd($request->all());
         $weighing = Balance::create($request->all());
 
         $request->session()->flash('weighing.id', $weighing->id);
@@ -89,7 +105,13 @@ class WeighingController extends Controller
     {
         $weighings= Balance::find($id);
         $procedencia = Procedencia::pluck('Tercero','id');
-        $codigo = Weighing::where('numero','LIKE',"EMP%")->OrderBy('fecha', 'DESC')->pluck('numero','numero');  
+        
+     
+        
+      
+        $codigo = Weighing::where('numero','LIKE',"EMP%")
+                            ->whereYear('fecha','>=','2020')                           
+                            ->OrderBy('fecha', 'DESC')->pluck('numero','numero'); 
   
         return view('weighing.edit', compact('weighings','codigo','procedencia'));
     }
@@ -102,7 +124,7 @@ class WeighingController extends Controller
     public function update(WeighingUpdateRequest $request, $id)
     {
         
-        $weighing= Balance::where('id',$id);  
+        $weighing= Balance::find($id); 
 
         $weighing->update($request->all());
 
@@ -127,17 +149,33 @@ class WeighingController extends Controller
         return redirect()->route('weighing.index')->with('error','Se elimino correctamente!');
     }
 
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Weighing $weighing
+     * @return \Illuminate\Http\Response
+     */
+
 
         public function basculaall(Request $request, Weighing $weighing)
     {
-        
-
         
        return Weighing::where('numero',$request->input('numero'))->get();
 
     }
 
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Weighing $weighing
+     * @return \Illuminate\Http\Response
+     */
 
+
+      public function export(Request $request) 
+    {
+        
+      return \Excel::download(new BalanceExport($request->fecha,$request->fechafinal), 'BalanceMaquila.xlsx');
+
+    }
 
 
 }

@@ -35,7 +35,7 @@ class Balance extends Model
         'id' => 'integer',
     ];
 
-    public $timestamps = true;
+    public $timestamps = false;
 
 
       public function scopeSearch($query, $nombre)

@@ -16,7 +16,7 @@ class Refined extends Model
     
     protected $guarded = [];
 
-    protected $table = 'REFINADO_ENTREGADO';
+    protected $table = 'DESPACHOPTMAQUILA()';
   
 
     /**
@@ -42,6 +42,6 @@ class Refined extends Model
 
       public function scopeSearch($query, $nombre)
     {
-        return $query ->where('remision','LIKE' ,  "%$nombre%");
+        return $query ->where('Número','LIKE' ,  "%$nombre%");
     }
 }

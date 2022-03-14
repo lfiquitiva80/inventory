@@ -26,6 +26,27 @@
 {!! Form::close() !!}
 	</div>
 	<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+
+		  <a class="btn btn-outline-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <i class="fas fa-file-excel"></i> Download Excel
+  </a>
+ 
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+
+            
+            {!! Form::open(['route' => 'balanceexport', 'method'=>'GET', 'Class'=>'form-inline']) !!}
+            <label>&nbsp; Fecha Inicial: </label>
+            {!! Form::date('fecha', \Illuminate\Support\Carbon::now(), ['class' => 'form-control','name'=>'fecha','required']) !!}
+            <label>&nbsp;  Fecha Final: </label>
+            {!! Form::date('fechafinal', \Illuminate\Support\Carbon::now(), ['class' => 'form-control','name'=>'fechafinal','required']) !!}&nbsp; 
+        <button type="submit" class="btn btn-success"><i class="fas fa-file-excel"></i> Descargar</button>
+          {!! Form::close() !!}
+        
+    
+  </div>
+</div>
 		
 	</div>
 </div>
@@ -87,14 +108,14 @@
 			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp; {{$row->NETO}}</span></span></span></td>
 			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->proc->Tercero}}</span></span></span></td>
 			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->PLACA}}</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->ACIDEZREMITIDA}}</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->HUM_IMP_REMITIDO}}</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->FEC_RECEPCION}}</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->NUMTIQUETE}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{number_format($row->ACIDEZREMITIDA,2)}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{number_format($row->HUM_IMP_REMITIDO,2)}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->FEC_RECEPCION}}&nbsp;&nbsp;</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;{{$row->NUMTIQUETE}}</span></span></span></td>
 			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$row->NETO_REC_KILOS}}</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->ACIDEZ_RECIBIDA}}</span></span></span></td>
-			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->HUM_IMP_RECIBIDA}}</span></span></span></td>
-			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{$row->MERMA}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{number_format($row->ACIDEZ_RECIBIDA,2)}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:none; border-left:none; border-right:1px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{number_format($row->HUM_IMP_RECIBIDA,2)}}</span></span></span></td>
+			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">{{number_format($row->MERMA,3)}}</span></span></span></td>
 			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$row->NETO_AGL_APROD_KG}}</span></span></span></td>
 			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$row->NETO_AGL_ACES_KG}}</span></span></span></td>
 			<td style="background-color:white; border-bottom:1px solid black; border-left:none; border-right:1px solid black; border-top:none; text-align:center; vertical-align:middle; white-space:nowrap"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$row->NETO_AGL_ENT_BIOD_KG}}</span></span></span></td>
@@ -110,7 +131,7 @@
 		
 </table>
 
-
+{{ $weighings->links() }}
 
 <hr>
 
@@ -141,7 +162,7 @@
             <td rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:2px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:89px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp; {{number_format($rdb,0,',','.')}}</span></span></strong></span></td>
             <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap; width:84px"><span style="font-size:15px"><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></span></td>
             <td colspan="2" rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:.7px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:183px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">RBD entregado&nbsp;</span></span></strong></span></td>
-            <td rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:2px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:93px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($totalrdbentregado,0,',','.')}}</span></span></strong></span></td>
+            <td rowspan="2" style="background-color:#d9d9d9; border-bottom:2px solid black; border-left:1px solid black; border-right:2px solid black; border-top:2px solid black; text-align:center; vertical-align:middle; white-space:nowrap; width:93px"><span style="font-size:15px"><strong><span style="color:black"><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($totalrdbentregado->KD,0,',','.')}}</span></span></strong></span></td>
             <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap; width:73px">&nbsp;</td>
         </tr>
         <tr>
@@ -394,8 +415,9 @@
             <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; text-align:center; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
             <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
             <td colspan="2" style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:2px solid black; border-right:.7px solid black; border-top:1px solid black; text-align:center; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">Despacho AGL</span></strong></span></span></td>
-            <td style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:none; border-right:2px solid black; border-top:none; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($desp_agl,0,',','.')}}</span></strong></span></span></td>
+            <td style="background-color:#a6a6a6; border-bottom:1px solid black; border-left:none; border-right:2px solid black; border-top:none; vertical-align:bottom; white-space:nowrap"><span style="font-size:15px"><span style="color:red"><strong><span style="font-family:Calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{number_format($desp_agl[0]->PesoNeto,0,',','.')}}</span></strong></span></span></td>
             <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
+    
         </tr>
         <tr>
             <td style="border-bottom:none; border-left:none; border-right:none; border-top:none; height:14px; vertical-align:bottom; white-space:nowrap">&nbsp;</td>
@@ -466,8 +488,14 @@
 
 
 
+
+
+
 <!-- <x:notify-messages /> -->
 
 @endsection
 
-@notifyJs
+
+
+
+

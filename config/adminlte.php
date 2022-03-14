@@ -256,13 +256,13 @@ return [
             //'label'       => 4,
             'label_color' => 'success',
         ],
-        // [
-        //     'text'        => 'Inventarios',
-        //     'url'         => 'inventory',
-        //     'icon'        => 'fas fa-dolly-flatbed',
-        //     //'label'       => 4,
-        //     'label_color' => 'success',
-        // ],
+        [
+            'text'        => 'Procedencia',
+            'url'         => 'procedencia',
+            'icon'        => 'fas fa-dolly-flatbed',
+            //'label'       => 4,
+            'label_color' => 'success',
+        ],
         //  ['header' => 'account_settings'],
         // [
         //     'text' => 'Lotes',

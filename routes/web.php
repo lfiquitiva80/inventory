@@ -8,6 +8,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\StatuController;
 use App\Http\Controllers\OfficialController;
 use App\Http\Controllers\WeighingController;
+use App\Http\Controllers\RefinedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,8 +95,12 @@ Route::resource('solution', App\Http\Controllers\SolutionController::class);
 
 Route::resource('weighing', App\Http\Controllers\WeighingController::class);
 Route::resource('refined', App\Http\Controllers\RefinedController::class);
+Route::resource('procedencia', App\Http\Controllers\ProcedenciaController::class);
 
 Route::get('bascula', [App\Http\Controllers\WeighingController::class, 'basculaall'])->name('basculaall');
+Route::get('refinedall', [App\Http\Controllers\RefinedController::class, 'refinedall'])->name('refinedall');
+Route::get('balance/export', [WeighingController::class, 'export'])->name('balanceexport');
+Route::get('refinedexport', [RefinedController::class, 'export'])->name('refinedexport');
 
 });
 

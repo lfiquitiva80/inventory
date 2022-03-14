@@ -20,16 +20,16 @@
 @endif
 
  <p>
-<!--   <a class="btn btn-outline-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+<a class="btn btn-outline-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
     <i class="fas fa-file-excel"></i> Download Excel
-  </a> -->
+  </a>
  
 </p>
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
 
             
-            {!! Form::open(['route' => 'erradicacionesexport', 'method'=>'GET', 'Class'=>'form-inline']) !!}
+            {!! Form::open(['route' => 'refinedexport', 'method'=>'GET', 'Class'=>'form-inline']) !!}
             <label>&nbsp; Fecha Inicial: </label>
             {!! Form::date('fecha', \Illuminate\Support\Carbon::now(), ['class' => 'form-control','name'=>'fecha','required']) !!}
             <label>&nbsp;  Fecha Final: </label>
@@ -55,10 +55,12 @@
 {!! Form::close() !!}
 <div class="panel panel-default">
 
+<h3>Total Despachado: <strong>{{number_format($total,0,',','.')}} Kilos</strong> | Tercero: <strong>900104517-8 (BIO D SA)</strong> | Producto: <strong>(1003)</strong></h3>
+
 <h4><b><center>REGISTROS DE ENTREGA REFINADO</h4></b></center>
 
 
-<a class="btn btn-outline-dark" data-toggle="modal" href='#refined'><i class="fas fa-plus-circle"></i> Crear Refinado Entregado</a>
+<!--<a class="btn btn-outline-dark" data-toggle="modal" href='#refined'><i class="fas fa-plus-circle"></i> Crear Refinado Entregado</a>-->
 <!-- <a href="#" class="btn btn-outline-info"><i class="fas fa-file-excel"></i> Download Excel</a> -->
 
 
@@ -72,12 +74,49 @@
 <table class="table table-hover" >
   <thead>
     <tr style="background-color: #D1D5DB;">
-      <td>  id </td>
-      <td>  Remisión</td>
-      <td>  Acidez_oleica_entregada</td>
-      <td>  Cantidad_Kg</td>
-      <td>  Fecha de creación</td>
-      <td>  Fecha de Actualización</td>
+              <td>Producto</td>
+              <td>Fecha</td>
+              <td>NIT_Tercero</td>
+              <td>Nombre_Tercero</td>
+              <td>NIT_Destino</td>
+              <td>Nombre_Destino</td>
+              <td>Número</td>
+              <td>NIT_Transportador</td>
+              <td>Nombre_Transportador</td>
+              <td>Placa</td>
+              <td>Remolque</td>
+              <td>Kilos_Despacho</td>
+              <td>Kilos_Recibidos</td>
+              <td>Diferencia</td>
+              <td>AGL_Palmitico_Remitido</td>
+              <td>AGL Palmitico_Recibido</td>
+              <td>Humedad_Remitido</td>
+              <td>Humedad_Recibido</td>
+              <td>Impureza_Remitido</td>
+              <td>Impureza_Recibido</td>
+              <td>Vr_Flete_x_Kilo</td>
+              <td>Tipo_Mvto</td>
+              <td>Dcto_Salida_Ofimatica</td>
+              <td>Tipo_MvtoOfimatica</td>
+              <td>sacos</td>
+              <td>Origen</td>
+              <td>Destino</td>
+              <td>T_Operacion</td>
+              <td>T_Flete</td>
+              <td>reporta</td>
+              <td>Ingreso</td>
+              <td>Fecha_Ingreso</td>
+              <td>nombreConductor</td>
+              <td>tipoInterno</td>
+              <td>tipoDco</td>
+              <td>numero</td>
+              <td>pesoBruto</td>
+              <td>pesoTara</td>
+              <td>unidadMedida</td>
+              <td>fechaBruto</td>
+              <td>fechaTara</td>
+              <td>fechaNeto</td>
+
       <td colspan="2">  Acciones</td>
 
       
@@ -91,31 +130,51 @@
     <tr>
 
  
-          <td>{{$row->id}}</td>
-          <td>{{$row->remision}}</td>
-          <td>{{$row->Acidez_oleica_entregada}}</td>
-          <td>{{$row->Cantidad_Kg}}</td>
-          <td>{{$row->created_at}}</td>
-          <td>{{$row->updated_at}}</td>
+<td>{{$row->Producto}}</td>
+<td>{{$row->Fecha}}</td>
+<td>{{$row->NIT_Tercero}}</td>
+<td>{{$row->Nombre_Tercero}}</td>
+<td>{{$row->NIT_Destino}}</td>
+<td>{{$row->Nombre_Destino}}</td>
+<td>{{$row->Número}}</td>
+<td>{{$row->NIT_Transportador}}</td>
+<td>{{$row->Nombre_Transportador}}</td>
+<td>{{$row->Placa}}</td>
+<td>{{$row->Remolque}}</td>
+<td>{{$row->Kilos_Despacho}}</td>
+<td>{{$row->Kilos_Recibidos}}</td>
+<td>{{$row->Diferencia}}</td>
+<td>{{number_format($row->AGL_Palmitico_Remitido,2)}}</td>
+<td>{{$row->AGL_Palmitico_Recibido}}</td>
+<td>{{$row->Humedad_Remitido}}</td>
+<td>{{$row->Humedad_Recibido}}</td>
+<td>{{$row->Impureza_Remitido}}</td>
+<td>{{$row->Impureza_Recibido}}</td>
+<td>{{$row->Vr_Flete_x_Kilo}}</td>
+<td>{{$row->Tipo_Mvto}}</td>
+<td>{{$row->Dcto_Salida_Ofimatica}}</td>
+<td>{{$row->Tipo_MvtoOfimatica}}</td>
+<td>{{$row->sacos}}</td>
+<td>{{$row->Origen}}</td>
+<td>{{$row->Destino}}</td>
+<td>{{$row->T_Operacion}}</td>
+<td>{{$row->T_Flete}}</td>
+<td>{{$row->reporta}}</td>
+<td>{{$row->Ingreso}}</td>
+<td>{{$row->Fecha_Ingreso}}</td>
+<td>{{$row->nombreConductor}}</td>
+<td>{{$row->tipoInterno}}</td>
+<td>{{$row->tipoDco}}</td>
+<td>{{$row->numero}}</td>
+<td>{{$row->pesoBruto}}</td>
+<td>{{$row->pesoTara}}</td>
+<td>{{$row->unidadMedida}}</td>
+<td>{{$row->fechaBruto}}</td>
+<td>{{$row->fechaTara}}</td>
+<td>{{$row->fechaNeto}}</td>
 
 
 
-          
-
-
-          <td><a   data-toggle="modal" data-target="#editar_refined" data-id="{{$row->id}}"
-          
-              data-remision="{{$row->remision}}"
-              data-acidez="{{$row->Acidez_oleica_entregada}}"
-              data-columna="{{$row->columna}}"
-              data-cantidad="{{$row->Cantidad_Kg}}"
-            
-
-           ><i class="fas fa-eye" aria-hidden="true"></i></a></td>
-</td>
-     
-
-          <td>@include('refined.destroy')</td>
 
        
         </td>
@@ -166,47 +225,31 @@ modal.find('.modal-body #Cantidad_Kg').val(cantidad);
       $(document).ready(function() {
 
 
-                $('.erradicacion').change(function(e) {
+                $('.refined').change(function(e) {
                             e.preventDefault();
-                            var finca = $('#farm_id').val();
-                            var lote = $('#lot_id').val();
-                            var fila = $('#fila').val();
-                            var columna = $('#columna').val();
+                            var numero = $('#remision').val();
+                          
                            
 
                                    $.ajax({
-                                            url: '{!!URL::to('inventoryall')!!}',
+                                            url: '{!!URL::to('refinedall')!!}',
                                             type: 'GET',
                                             dataType: 'json',
-                                            data: {finca: finca, lote: lote, fila: fila , columna : columna},
+                                            data: {numero: numero},
 
                                             success:function(data){
 
                                                 if (data.length == 0 ) {
 
-                                                    $('#result').html('No se encuentra en Inventario, por el cual no se puede erradicar!!') ;
-                                                    $('#result').css("color","white");
-                                                    $('#guardar').attr('disabled', 'disabled');
 
                                                 } else {
 
-                                                     $('#result').html('Se encuentra en Inventario y lo puede registrar con el ' + ' id de registro: ' + data[0].id);
-                                                     $('#result').css("color","yellow");
-                                                     $('#guardar').removeAttr('disabled', 'disabled');
-
-                                                    
+                                                     $('#Cantidad_Kg').val(data[0].pesoNeto)
                                                
                                                  }
 
-                                                 console.log(data); 
-                                                 
-                                                 
-                                                 
-
+                                             
                                              }
-
-                                               
-
                                            
                                         })
 

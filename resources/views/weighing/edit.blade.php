@@ -59,13 +59,13 @@
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <div class="form-group">
         <span class="label">Acidez Remitida</span>
-        <input type="text" name="ACIDEZREMITIDA" id="ACIDEZREMITIDA" class="form-control" value="{{$weighings->ACIDEZREMITIDA}}" required="required"  title="">
+        <input type="text" name="ACIDEZREMITIDA" id="ACIDEZREMITIDA" class="form-control" value="{{number_format($weighings->ACIDEZREMITIDA,2)}}" required="required"  title="">
     </div>
     </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <div class="form-group">
         <span class="label">Humedad + impurezas remitida</span>
-        <input type="text" name="HUM_IMP_REMITIDO" id="HUM_IMP_REMITIDO" class="form-control" value="{{$weighings->HUM_IMP_REMITIDO}}" required="required"  title="">
+        <input type="text" name="HUM_IMP_REMITIDO" id="HUM_IMP_REMITIDO" class="form-control" value="{{number_format($weighings->HUM_IMP_REMITIDO,2)}}" required="required"  title="">
     </div>
     </div>
 </div>
@@ -104,14 +104,14 @@
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <div class="form-group">
         <span class="label">Acidez recibida</span>
-        <input type="text" name="ACIDEZ_RECIBIDA" id="ACIDEZ_RECIBIDA" class="form-control" value="{{$weighings->ACIDEZ_RECIBIDA}}" required="required"  title="">
+        <input type="text" name="ACIDEZ_RECIBIDA" id="ACIDEZ_RECIBIDA" class="form-control" value="{{number_format($weighings->ACIDEZ_RECIBIDA,2)}}" required="required"  title="">
     </div>
         
     </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <div class="form-group">    
         <span class="label">Humedad + impurezas recibido </span>
-        <input type="text" name="HUM_IMP_RECIBIDA" id="HUM_IMP_RECIBIDA" class="form-control" value="{{$weighings->HUM_IMP_RECIBIDA}}" required="required"  title="">
+        <input type="text" name="HUM_IMP_RECIBIDA" id="HUM_IMP_RECIBIDA" class="form-control" value="{{number_format($weighings->HUM_IMP_RECIBIDA,2)}}" required="required"  title="">
         </div>
     </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -131,7 +131,7 @@
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <div class="form-group">
         <span class="label">% Merma refinacion  (AGL) </span>
-        <input type="text" name="MERMA" id="MERMA" class="form-control" value="{{$weighings->MERMA}}" required="required"  title=""readonly>
+        <input type="text" name="MERMA" id="MERMA" class="form-control" value="{{number_format($weighings->MERMA,3)}}" required="required"  title=""readonly>
     </div>
         
     </div>

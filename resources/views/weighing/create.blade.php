@@ -42,7 +42,7 @@
         <div class="form-group">    
         <span class="label">Procedencia</span>
       
-        {!! Form::select('PROCEDENCIA',$procedencia, null, ['class' => 'form-control ','name'=>'PROCEDENCIA','id'=>'PROCEDENCIA' ,'placeholder'=>'Seleccione...', 'required']) !!}
+        {!! Form::select('PROCEDENCIA',$procedencia, old('PROCEDENCIA'), ['class' => 'form-control ','name'=>'PROCEDENCIA','id'=>'PROCEDENCIA' ,'placeholder'=>'Seleccione...', 'required']) !!}
     </div>
     </div>
 </div>
@@ -59,13 +59,13 @@
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <div class="form-group">
         <span class="label">Acidez Remitida</span>
-        <input type="text" name="ACIDEZREMITIDA" id="ACIDEZREMITIDA" class="form-control" value="" required="required"  title="">
+        <input type="text" name="ACIDEZREMITIDA" id="ACIDEZREMITIDA" class="form-control" value="{{old('ACIDEZREMITIDA')}}" required="required"  title="">
     </div>
     </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <div class="form-group">
         <span class="label">Humedad + impurezas remitida</span>
-        <input type="text" name="HUM_IMP_REMITIDO" id="HUM_IMP_REMITIDO" class="form-control" value="" required="required"  title="">
+        <input type="text" name="HUM_IMP_REMITIDO" id="HUM_IMP_REMITIDO" class="form-control" value="{{old('HUM_IMP_REMITIDO')}}" required="required"  title="">
     </div>
     </div>
 </div>
@@ -87,7 +87,7 @@
         <span class="label">Número tiquete </span>
     
 
-        {!! Form::select('NUMTIQUETE',$codigo, null, ['class' => 'form-control bascula','name'=>'NUMTIQUETE','id'=>'NUMTIQUETE' ,'placeholder'=>'Seleccione...', 'required']) !!}
+        {!! Form::select('NUMTIQUETE',$codigo, old('NUMTIQUETE'), ['class' => 'form-control bascula','name'=>'NUMTIQUETE','id'=>'NUMTIQUETE' ,'placeholder'=>'Seleccione...', 'required']) !!}
 
     </div>
     </div>
@@ -104,14 +104,14 @@
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <div class="form-group">
         <span class="label">Acidez recibida</span>
-        <input type="text" name="ACIDEZ_RECIBIDA" id="ACIDEZ_RECIBIDA" class="form-control" value="" required="required"  title="">
+        <input type="text" name="ACIDEZ_RECIBIDA" id="ACIDEZ_RECIBIDA" class="form-control" value="{{old('ACIDEZ_RECIBIDA')}}" required="required"  title="">
     </div>
         
     </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <div class="form-group">    
         <span class="label">Humedad + impurezas recibido </span>
-        <input type="text" name="HUM_IMP_RECIBIDA" id="HUM_IMP_RECIBIDA" class="form-control" value="" required="required"  title="">
+        <input type="text" name="HUM_IMP_RECIBIDA" id="HUM_IMP_RECIBIDA" class="form-control" value="{{old('HUM_IMP_RECIBIDA')}}" required="required"  title="">
         </div>
     </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -200,7 +200,7 @@
 
                                             success:function(data){
 
-                                                console.log(data);
+                                                
 
                                                 if (data.length == 0 ) {
                                                     
