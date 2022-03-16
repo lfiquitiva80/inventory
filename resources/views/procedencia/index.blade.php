@@ -1,15 +1,6 @@
-
-  @extends('adminlte::page')
-
-
-
+@extends('adminlte::page')
     @section('content')
-
-        
     	<div class="panel-body">
-
-
-
 <div class="container">
           @if ($errors->any())
     <div class="alert alert-danger">
@@ -29,7 +20,7 @@
 {!! Form::close() !!}
 <div class="panel panel-default">
 
-<h4><b><center>REGISTROS DE FINCAS</h4></b></center>
+<h4><b><center>REGISTROS DE TERCEROS</h4></b></center>
 
 
 <a class="btn btn-info" data-toggle="modal" href='#procedencia'><i class="fas fa-plus-circle"></i> Crear Tercero de Procedencia</a>
@@ -89,9 +80,6 @@
 
 </table>
 </div>
-
-
-
 </div>
 
 </div>
@@ -118,12 +106,8 @@ modal.find('.modal-body #nit').val(nit);
 })
 });
         
-     
-
     </script>
 @stop
-
-
 
     @endsection
 

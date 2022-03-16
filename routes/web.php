@@ -102,7 +102,11 @@ Route::get('refinedall', [App\Http\Controllers\RefinedController::class, 'refine
 Route::get('balance/export', [WeighingController::class, 'export'])->name('balanceexport');
 Route::get('refinedexport', [RefinedController::class, 'export'])->name('refinedexport');
 
+
 });
+
+Route::get('acp', [WeighingController::class, 'acp'])->name('acp');
+Route::get('agl', [WeighingController::class, 'agl'])->name('agl');
 
 
 
