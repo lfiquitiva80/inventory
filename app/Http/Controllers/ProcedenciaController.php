@@ -86,8 +86,12 @@ class ProcedenciaController extends Controller
      * @param \App\Models\procedencia $procedencia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,Procedencia $procedencia)
+    public function destroy(Request $request, $id)
     {
+        
+
+        $procedencia = Procedencia::findOrFail($id);
+       
         $procedencia->delete();
 
         return redirect()->route('procedencia.index');

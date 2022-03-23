@@ -105,10 +105,6 @@ class WeighingController extends Controller
     {
         $weighings= Balance::find($id);
         $procedencia = Procedencia::pluck('Tercero','id');
-        
-     
-        
-      
         $codigo = Weighing::where('numero','LIKE',"EMP%")
                             ->whereYear('fecha','>=','2020')                           
                             ->OrderBy('fecha', 'DESC')->pluck('numero','numero'); 
@@ -141,7 +137,6 @@ class WeighingController extends Controller
     public function destroy(Request $request, $id)
     {
         
-
         $balance= Balance::where('id',$id);   
 
         $balance->delete();
