@@ -10,6 +10,7 @@ use App\Models\Refined;
 use App\Models\Procedencia;
 use Illuminate\Http\Request;
 use App\Exports\BalanceExport;
+use App\Models\Saldos;
 use DB;
 
 class WeighingController extends Controller
@@ -20,6 +21,7 @@ class WeighingController extends Controller
      */
     public function index(Request $request)
     {   
+        $titulo="";
         $weighings = Balance::Search($request->nombre)->OrderBy('id','DESC')->paginate(15);
         $totalacp =  Balance::sum('NETO_REC_KILOS');
         $totalagl =  Balance::sum('NETO_AGL_APROD_KG');
@@ -34,7 +36,6 @@ class WeighingController extends Controller
         $merma = $conv_acp * 0.01;
         $produccion_agl= $conv_acp-$totalrdbentregado->KD-$merma;
         $conv_desg = $conv_acp-$merma;
-
         $saldo_cpo=  $totalacp-$conv_desg-$merma;
         $agl_entregar = $produccion_agl*0.5;
         $desp_agl = DB::connection('improagro')->select(DB::raw("SELECT sum(pesoNeto) as PesoNeto
@@ -176,6 +177,7 @@ class WeighingController extends Controller
     public function acp(Request $request)
     {
         
+        $titulo="INVENTARIO FINAL";
         $weighings = Balance::Search($request->nombre)->OrderBy('id','DESC')->paginate(15);
         $totalacp =  Balance::sum('NETO_REC_KILOS');
         $totalagl =  Balance::sum('NETO_AGL_APROD_KG');
@@ -203,13 +205,26 @@ class WeighingController extends Controller
         $diferenciacpo = $saldoacp-$saldo_cpo;
         $porcentajepropio =($diferenciacpo/$saldoacp)*100;
 
-        return  view('weighing.acp', compact('saldoacp','saldo_cpo','diferenciacpo','porcentajepropio'));
+
+        $acpsaldo = Saldos::find(1);
+        $acpsaldo->SALDOINICIAL= $saldoacp;
+        $acpsaldo->SALDOFINAL= $saldo_cpo;
+        $acpsaldo->DIFERENCIA= $diferenciacpo;
+        $acpsaldo->PORCENTAJE= $porcentajepropio;
+        $acpsaldo->save();
+
+
+
+
+
+        return  view('weighing.acp', compact('saldoacp','saldo_cpo','diferenciacpo','porcentajepropio','titulo'));
     }
 
 
         public function agl(Request $request)
     {
         
+        $titulo="INVENTARIO FINAL";
         $weighings = Balance::Search($request->nombre)->OrderBy('id','DESC')->paginate(15);
         $totalacp =  Balance::sum('NETO_REC_KILOS');
         $totalagl =  Balance::sum('NETO_AGL_APROD_KG');
@@ -237,8 +252,46 @@ class WeighingController extends Controller
         $diferenciaagl = $saldoagl-$saldo_agl;
         $porcentajepropio =($diferenciaagl/$saldoagl)*100;
 
-        return  view('weighing.agl', compact('saldoagl','saldo_agl','diferenciaagl','porcentajepropio'));
+
+        $aglsaldo = Saldos::find(2);
+        $aglsaldo->SALDOINICIAL= $saldoagl;
+        $aglsaldo->SALDOFINAL= $saldo_agl;
+        $aglsaldo->DIFERENCIA= $diferenciaagl;
+        $aglsaldo->PORCENTAJE= $porcentajepropio;
+        $aglsaldo->save();
+
+
+        return  view('weighing.agl', compact('saldoagl','saldo_agl','diferenciaagl','porcentajepropio','titulo'));
     }
+
+
+    public function InvInicialAcp(Request $request)
+    {
+       $titulo= $request->input('titulo');
+       $saldosacpbd= Saldos::find(1);  
+       $saldoacp= $request->input('saldo');
+       $diferenciacpo = $saldoacp * $saldosacpbd->PORCENTAJE/100;
+       $saldo_cpo = $saldoacp-$diferenciacpo;
+       $porcentajepropio =($diferenciacpo/$saldoacp)*100;
+
+
+     return  view('weighing.acp', compact('saldoacp','saldo_cpo','diferenciacpo','porcentajepropio','titulo'));   
+    }
+
+
+
+    public function InvInicialAgl(Request $request)
+    {
+       $titulo= $request->input('titulo');
+       $saldosacpbd= Saldos::find(2);  
+       $saldoagl= $request->input('saldo');
+       $diferenciaagl = $saldoagl * $saldosacpbd->PORCENTAJE/100;
+       $saldo_agl = $saldoagl-$diferenciaagl;
+       $porcentajepropio =($diferenciaagl/$saldoagl)*100;
+
+
+     return  view('weighing.agl', compact('saldoagl','saldo_agl','diferenciaagl','porcentajepropio','titulo'));   
+    }        
 
 
 }

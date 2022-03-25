@@ -107,6 +107,8 @@ Route::get('refinedexport', [RefinedController::class, 'export'])->name('refined
 
 Route::get('acp', [WeighingController::class, 'acp'])->name('acp');
 Route::get('agl', [WeighingController::class, 'agl'])->name('agl');
+Route::get('invinicialacp', [WeighingController::class, 'InvInicialAcp'])->name('invinicialacp');
+Route::get('invinicialagl', [WeighingController::class, 'InvInicialAgl'])->name('invinicialagl');
 
 
 

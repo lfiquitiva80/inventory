@@ -52,7 +52,7 @@
                   <hr>
 
                 </div>
-                <div class="card-header"><h1>ACEITE CRUDO DE PALMA (A.C.P)</h1></div>
+                <div class="card-header"><h1>ACEITE CRUDO DE PALMA (A.C.P) || {{ $titulo}}</h1></div>
           
 
                 <div class="card-body">
